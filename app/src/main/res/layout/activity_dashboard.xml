@@ -8,69 +8,91 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/addaccount"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="19sp"
-        tools:layout_editor_absoluteX="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="95dp" />
-]
+    ]
+
     <Button
         android:id="@+id/button7"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
         android:background="@drawable/manageaccount"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="19sp"
-        tools:layout_editor_absoluteX="218dp"
+        app:layout_constraintEnd_toEndOf="@+id/barrier"
         tools:layout_editor_absoluteY="95dp" />
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/searchemployee"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="19sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="305dp" />
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="273dp" />
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
         android:background="@drawable/searchjob"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="19sp"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="305dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="273dp" />
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
         android:background="@drawable/logout"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="55sp"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="513dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="438dp" />
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="177dp"
-        android:layout_height="189dp"
+        android:layout_width="148dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/addjob"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
         android:textSize="19sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="513dp" />
+        app:layout_constraintEnd_toStartOf="@+id/button10"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="438dp" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier"
