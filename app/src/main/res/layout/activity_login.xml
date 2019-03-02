@@ -88,7 +88,7 @@
         android:id="@+id/imageButton"
         android:layout_width="412dp"
         android:layout_height="106dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="52dp"
         android:background="@android:color/white"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/textView"
