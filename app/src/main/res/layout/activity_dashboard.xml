@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GuestActivity">
+    tools:context=".DashboardActivity">
 
     <Button
         android:id="@+id/button"
@@ -13,10 +13,10 @@
         android:background="@drawable/addaccount"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="19"
+        android:textSize="19sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="95dp" />
-
+]
     <Button
         android:id="@+id/button7"
         android:layout_width="177dp"
@@ -24,7 +24,7 @@
         android:background="@drawable/manageaccount"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="19"
+        android:textSize="19sp"
         tools:layout_editor_absoluteX="218dp"
         tools:layout_editor_absoluteY="95dp" />
 
@@ -35,7 +35,7 @@
         android:background="@drawable/searchemployee"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="19"
+        android:textSize="19sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="305dp" />
 
@@ -46,7 +46,7 @@
         android:background="@drawable/searchjob"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="19"
+        android:textSize="19sp"
         tools:layout_editor_absoluteX="218dp"
         tools:layout_editor_absoluteY="305dp" />
 
@@ -57,7 +57,7 @@
         android:background="@drawable/logout"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="55"
+        android:textSize="55sp"
         tools:layout_editor_absoluteX="218dp"
         tools:layout_editor_absoluteY="513dp" />
 
@@ -68,7 +68,7 @@
         android:background="@drawable/addjob"
         android:gravity="bottom|center"
         android:textColor="@android:color/white"
-        android:textSize="19"
+        android:textSize="19sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="513dp" />
 
