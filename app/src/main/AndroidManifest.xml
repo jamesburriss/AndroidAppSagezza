@@ -25,7 +25,12 @@
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".AdminActivity" />
+        <activity
+            android:exported="true"
+            android:name=".AdminActivity"
+            android:label="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
