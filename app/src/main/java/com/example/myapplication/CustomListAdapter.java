@@ -16,29 +16,35 @@ public class CustomListAdapter extends ArrayAdapter {
     private final String[] nameArray;
 
     //to store the list of countries
-    private final String[] infoArray;
+    private final String[] email;
 
-    public CustomListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam){
-
-        super(context,R.layout.listview_design , nameArrayParam);
+    private final String[] phoneNo;
+private final String[] info;
+    public CustomListAdapter(Activity context, String[] nameArrayParam,String[] phoneNo, String[] emailArrayParam,String [] info)
+{
+        super(context,R.layout.listview_layout , nameArrayParam);
         this.context=context;
         this.nameArray = nameArrayParam;
-        this.infoArray = infoArrayParam;
-
+        this.email = emailArrayParam;
+        this.phoneNo=phoneNo;
+        this.info=info;
     }
+
+
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.listview_design, null,true);
+        View rowView=inflater.inflate(R.layout.listview_layout, null,true);
 
         //this code gets references to objects in the listview_row.xml file
-        TextView nameTextField = (TextView) rowView.findViewById(R.id.blah1);
-        TextView infoTextField = (TextView) rowView.findViewById(R.id.blah2);
-
+        TextView nameTextField = (TextView) rowView.findViewById(R.id.NameHint);
+        TextView infoTextField = (TextView) rowView.findViewById(R.id.actuaName);
+        TextView emailTextField=(TextView) rowView.findViewById(R.id.ActualEmail);
+        TextView phoneId=(TextView) rowView.findViewById(R.id.actulPhone);
         //this code sets the values of the objects to values from the arrays
         nameTextField.setText(nameArray[position]);
-        infoTextField.setText(infoArray[position]);
-
-        return rowView;
-
-    };
+        infoTextField.setText(info[position]);
+        emailTextField.setText(email[position]);
+        phoneId.setText(phoneNo[position]);
+   return rowView;
+    }
 }

@@ -12,13 +12,18 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        CustomListAdapter whatever = new CustomListAdapter(this, nameArray, infoArray);
+        CustomListAdapter whatever = new CustomListAdapter(this, nameArray,phoneNo,emailArray,infoArray);
         listView = (ListView) findViewById(R.id.ListViewId);
         listView.setAdapter(whatever);
 
     }
-    String[] nameArray = {"Husain" };
+    String[] nameArray = {"Name" };
 
     String[] infoArray = {
-          "Smart"};
+          "James burris"};
+    String[] phoneNo = {
+            "07936459821"};
+    String[] emailArray = {"jamesburris@nonce.com" };
 }
+
+
