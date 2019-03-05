@@ -12,7 +12,6 @@ public class CustomListAdapter extends ArrayAdapter {
     //to reference the Activity
     private final Activity context;
 
-
     //to store the list of countries
     private final String[] email;
 
@@ -20,7 +19,7 @@ public class CustomListAdapter extends ArrayAdapter {
 private final String[] info;
     public CustomListAdapter(Activity context,String[] phoneNo, String[] emailArrayParam,String [] info)
 {
-        super(context,R.layout.listview_layout );
+        super(context,R.layout.listview_layout , emailArrayParam);
         this.context=context;
         this.email = emailArrayParam;
         this.phoneNo=phoneNo;
