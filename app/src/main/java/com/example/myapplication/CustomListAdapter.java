@@ -13,32 +13,36 @@ public class CustomListAdapter extends ArrayAdapter {
     private final Activity context;
 
     //to store the list of countries
-    private final String[] nameArray;
+    private final String[] email;
+    private final String [] dateOfBirth;
 
-    //to store the list of countries
-    private final String[] infoArray;
-
-    public CustomListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam){
-
-        super(context,R.layout.listview_design , nameArrayParam);
+    private final String[] phoneNo;
+private final String[] info;
+    public CustomListAdapter(Activity context,String[] phoneNo, String[] emailArrayParam,String [] info,String [] dateOfBirth)
+{
+        super(context,R.layout.listview_layout , emailArrayParam);
         this.context=context;
-        this.nameArray = nameArrayParam;
-        this.infoArray = infoArrayParam;
-
+        this.email = emailArrayParam;
+        this.phoneNo=phoneNo;
+        this.info=info;
+        this.dateOfBirth=dateOfBirth;
     }
+
+
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.listview_design, null,true);
+        View rowView=inflater.inflate(R.layout.listview_layout, null,true);
 
         //this code gets references to objects in the listview_row.xml file
-        TextView nameTextField = (TextView) rowView.findViewById(R.id.blah1);
-        TextView infoTextField = (TextView) rowView.findViewById(R.id.blah2);
-
+        TextView infoTextField = (TextView) rowView.findViewById(R.id.actuaName);
+        TextView emailTextField=(TextView) rowView.findViewById(R.id.ActualEmail);
+        TextView phoneId=(TextView) rowView.findViewById(R.id.actulPhone);
+        TextView dateofBirthTextField=(TextView) rowView.findViewById(R.id.actualDob);
         //this code sets the values of the objects to values from the arrays
-        nameTextField.setText(nameArray[position]);
-        infoTextField.setText(infoArray[position]);
-
-        return rowView;
-
-    };
+        infoTextField.setText(info[position]);
+        emailTextField.setText(email[position]);
+        phoneId.setText(phoneNo[position]);
+        dateofBirthTextField.setText(dateOfBirth[position]);
+   return rowView;
+    }
 }
