@@ -17,8 +17,8 @@ public class AdminActivity extends AppCompatActivity {
         listView.setAdapter(whatever);
 
     }
-    String[] nameArray = {"Husain" };
+    String[] nameArray = {"Husain","19"};
 
     String[] infoArray = {
-          "Smart"};
+          "Smart","CSC"};
 }
