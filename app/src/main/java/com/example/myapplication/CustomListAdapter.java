@@ -34,15 +34,15 @@ private final String[] info;
         View rowView=inflater.inflate(R.layout.listview_layout, null,true);
 
         //this code gets references to objects in the listview_row.xml file
-        TextView infoTextField = (TextView) rowView.findViewById(R.id.actuaName);
-        TextView emailTextField=(TextView) rowView.findViewById(R.id.ActualEmail);
-        TextView phoneId=(TextView) rowView.findViewById(R.id.actulPhone);
-        TextView dateofBirthTextField=(TextView) rowView.findViewById(R.id.actualDob);
+        TextView infoTextField = (TextView) rowView.findViewById(R.id.actualName);
+        TextView emailTextField=(TextView) rowView.findViewById(R.id.actualEmail);
+        TextView phoneId=(TextView) rowView.findViewById(R.id.actualPhone);
+        //TextView dateofBirthTextField=(TextView) rowView.findViewById(R.id.actualDob);
         //this code sets the values of the objects to values from the arrays
         infoTextField.setText(info[position]);
         emailTextField.setText(email[position]);
         phoneId.setText(phoneNo[position]);
-        dateofBirthTextField.setText(dateOfBirth[position]);
+        //dateofBirthTextField.setText(dateOfBirth[position]);
    return rowView;
     }
 }
