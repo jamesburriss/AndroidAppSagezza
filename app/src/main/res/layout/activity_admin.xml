@@ -9,12 +9,43 @@
 
     <ListView
         android:id="@+id/ListViewId"
-        android:layout_width="400dp"
-        android:layout_height="646dp"
+        android:layout_width="290dp"
+        android:layout_height="278dp"
 
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="52dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"></ListView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/admin_gradient"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ListViewId"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:id="@+id/imageView4"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/jam" />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/actualName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20sp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
