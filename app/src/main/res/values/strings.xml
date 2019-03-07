@@ -7,6 +7,7 @@
     <string name="login_btn">LOGIN</string>
     <string name="login_forgot_password">Forgot your password</string>
     <string name="dashboard_welcome">Welcome @NAME</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>
