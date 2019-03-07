@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/rectimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
     />
 
     <Button
@@ -32,16 +32,16 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.339" />
 
 
     <ImageView
         android:id="@+id/rectimage"
         android:layout_width="fill_parent"
-        android:layout_height="70sp"
+        android:layout_height="100sp"
         android:background="@color/colorPrimary"
         android:src="@drawable/rectangle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,27 +53,26 @@
         android:id="@+id/textView"
         android:layout_width="153dp"
         android:layout_height="64dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="128dp"
         android:text="@string/login_title"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectimage" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="244dp"
-        android:layout_height="52dp"
+        android:layout_height="54dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/login_email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:targetApi="o" />
@@ -94,16 +93,16 @@
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.012"
         tools:targetApi="o" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="87dp"
-        android:layout_height="29dp"
+        android:layout_width="114dp"
+        android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/logo"
@@ -116,16 +115,11 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="84dp"
         android:text="@string/login_forgot_password"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.707"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 
