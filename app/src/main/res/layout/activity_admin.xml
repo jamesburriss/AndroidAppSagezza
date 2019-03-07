@@ -15,13 +15,6 @@
         android:layout_marginBottom="8dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" /><![CDATA[
+        app:layout_constraintEnd_toEndOf="parent"></ListView>
 
-    android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/jam" />
-]]>
 </android.support.constraint.ConstraintLayout>

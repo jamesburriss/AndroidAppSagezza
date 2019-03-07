@@ -20,12 +20,12 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        getSupportActionBar().hide();
+
 
         videoView = (VideoView)findViewById(R.id.videoView);
 
         Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video);
-
+        videoView.setZOrderOnTop(true);//this line solve the problem
         videoView.setVideoURI(video);
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
