@@ -14,18 +14,17 @@ public class CustomListAdapter extends ArrayAdapter {
 
     //to store the list of countries
     private final String[] email;
-   // private final String [] dateOfBirth;
+    private final String [] dateOfBirth;
 
     private final String[] phoneNo;
-private final String[] info;
-    public CustomListAdapter(Activity context,String[] phoneNo, String[] emailArrayParam,String [] info,String [] dateOfBirth)
+//private final String[] info;
+    public CustomListAdapter(Activity context,String[] phoneNo, String[] emailArrayParam,String [] dateOfBirth)
 {
         super(context,R.layout.listview_layout , emailArrayParam);
         this.context=context;
         this.email = emailArrayParam;
         this.phoneNo=phoneNo;
-        this.info=info;
-        //this.dateOfBirth=dateOfBirth;
+        this.dateOfBirth=dateOfBirth;
     }
 
 
@@ -37,11 +36,11 @@ private final String[] info;
         //TextView infoTextField = (TextView) rowView.findViewById(R.id.actualName);
         TextView emailTextField=(TextView) rowView.findViewById(R.id.actualEmail);
         TextView phoneId=(TextView) rowView.findViewById(R.id.actualPhone);
-        //TextView dateofBirthTextField=(TextView) rowView.findViewById(R.id.actualDob);
+        TextView dateofBirthTextField=(TextView) rowView.findViewById(R.id.actual_dob);
         //this code sets the values of the objects to values from the arrays
         emailTextField.setText(email[position]);
         phoneId.setText(phoneNo[position]);
-        //dateofBirthTextField.setText(dateOfBirth[position]);
+        dateofBirthTextField.setText(dateOfBirth[position]);
    return rowView;
     }
 }
