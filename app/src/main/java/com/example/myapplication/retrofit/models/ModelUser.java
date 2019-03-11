@@ -77,12 +77,12 @@ public class ModelUser
         this.username = username;
     }
 
-    public Boolean getIsStaff()
+    public Boolean isStaff()
     {
         return isStaff;
     }
 
-    public void setIsStaff(Boolean isStaff)
+    public void isStaff(Boolean isStaff)
     {
         this.isStaff = isStaff;
     }
@@ -97,12 +97,12 @@ public class ModelUser
         this.dateJoined = dateJoined;
     }
 
-    public Boolean getIsActive()
+    public Boolean isActive()
     {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive)
+    public void isActive(Boolean isActive)
     {
         this.isActive = isActive;
     }

@@ -1,5 +1,26 @@
 apply plugin: 'com.android.application'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def getServerProto() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty("developmentServerProto");
+}
+
+def getServerHost() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty("developmentServerHost");
+}
+
+def getServerPort() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty("developmentServerPort");
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -9,6 +30,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "SERVER_PROTO", getServerProto()
+        buildConfigField "String", "SERVER_HOST", getServerHost()
+        buildConfigField ("int", "SERVER_PORT", getServerPort())
     }
     buildTypes {
         release {

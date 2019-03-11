@@ -17,7 +17,7 @@ public class ModelUsers
 
     @SerializedName("previous")
     @Expose
-    private Object previous;
+    private String previous;
 
     @SerializedName("users")
     @Expose
@@ -28,38 +28,18 @@ public class ModelUsers
         return count;
     }
 
-    public void setCount(Integer count)
-    {
-        this.count = count;
-    }
-
     public String getNext()
     {
         return next;
     }
 
-    public void setNext(String next)
-    {
-        this.next = next;
-    }
-
-    public Object getPrevious()
+    public String getPrevious()
     {
         return previous;
-    }
-
-    public void setPrevious(Object previous)
-    {
-        this.previous = previous;
     }
 
     public List<ModelUser> getUsers()
     {
         return users;
-    }
-
-    public void setUsers(List<ModelUser> users)
-    {
-        this.users = users;
     }
 }

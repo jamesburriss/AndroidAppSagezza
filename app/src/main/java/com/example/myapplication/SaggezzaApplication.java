@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.myapplication.retrofit.SaggezzaService;
 import com.example.myapplication.util.ValueContainer;
@@ -43,7 +44,7 @@ public class SaggezzaApplication extends Application
         OkHttpClient client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(String.format("%s://%s:%d/", BuildConfig.SERVER_PROTO, BuildConfig.SERVER_HOST, BuildConfig.SERVER_PORT))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
