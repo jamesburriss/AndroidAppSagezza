@@ -40,6 +40,7 @@ public class DashboardActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout_menu:
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
             default:
