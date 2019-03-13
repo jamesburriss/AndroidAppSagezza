@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">Saggezza</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
+
+    <string name="title_activity_admin">Admin</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_splash">Saggezza</string>
+
+    <string name="dashboard_welcome">Welcome {NAME}</string>
+
     <string name="login_title">Sign In</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_btn">LOGIN</string>
     <string name="login_forgot_password">Forgot your password</string>
-    <string name="dashboard_welcome">Welcome @NAME</string>
+
     <string name="action_settings">Settings</string>
-
-
 </resources>

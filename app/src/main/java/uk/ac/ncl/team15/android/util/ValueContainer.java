@@ -1,4 +1,4 @@
-package com.example.myapplication.util;
+package uk.ac.ncl.team15.android.util;
 
 public class ValueContainer<T>
 {

@@ -1,20 +1,17 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class AdminActivity extends AppCompatActivity {
+import uk.ac.ncl.team15.android.R;
+
+public class UserProfileActivity extends AppCompatActivity {
     ListView listView;
     private String [] info;
     @Override
@@ -27,7 +24,7 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                Intent intent = new Intent(AdminActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(UserProfileActivity.this, DashboardActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -51,10 +48,10 @@ public class AdminActivity extends AppCompatActivity {
     };
 
     String infoArray =
-          "James burris";
+          "Example User";
     String[] phoneNo = {
-            "07936459821"};
-    String[] emailArray = {"jamesburris@nonce.com" };
+            "01234567890"};
+    String[] emailArray = {"a@b.com" };
 
 }
 

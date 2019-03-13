@@ -1,10 +1,9 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.example.myapplication.retrofit.SaggezzaService;
-import com.example.myapplication.util.ValueContainer;
+import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
+import uk.ac.ncl.team15.android.util.ValueContainer;
 
 import java.io.IOException;
 

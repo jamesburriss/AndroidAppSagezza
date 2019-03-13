@@ -24,7 +24,7 @@ def getServerPort() {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "uk.ac.ncl.team15.android"
         minSdkVersion 25
         targetSdkVersion 28
         versionCode 1

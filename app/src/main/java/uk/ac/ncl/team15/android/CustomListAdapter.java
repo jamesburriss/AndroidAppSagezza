@@ -1,12 +1,13 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import uk.ac.ncl.team15.android.R;
 
 public class CustomListAdapter extends ArrayAdapter {
     //to reference the Activity
@@ -20,7 +21,7 @@ public class CustomListAdapter extends ArrayAdapter {
 //private final String[] info;
     public CustomListAdapter(Activity context,String[] phoneNo, String[] emailArrayParam,String [] dateOfBirth)
 {
-        super(context,R.layout.listview_layout , emailArrayParam);
+        super(context, R.layout.listview_layout , emailArrayParam);
         this.context=context;
         this.email = emailArrayParam;
         this.phoneNo=phoneNo;
