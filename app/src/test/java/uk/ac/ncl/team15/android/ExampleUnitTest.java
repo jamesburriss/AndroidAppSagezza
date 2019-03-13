@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import org.junit.Test;
 

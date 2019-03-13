@@ -1,18 +1,15 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import uk.ac.ncl.team15.android.R;
 
 public class AdminActivity extends AppCompatActivity {
     ListView listView;

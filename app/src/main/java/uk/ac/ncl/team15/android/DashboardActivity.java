@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import uk.ac.ncl.team15.android.R;
 
 public class DashboardActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.retrofit.models;
+package uk.ac.ncl.team15.android.retrofit.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
