@@ -24,7 +24,7 @@ def getServerPort() {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "uk.ac.ncl.team15.android"
         minSdkVersion 25
         targetSdkVersion 28
         versionCode 1
@@ -50,6 +50,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
+
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'

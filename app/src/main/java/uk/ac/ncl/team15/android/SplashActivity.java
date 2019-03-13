@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.VideoView;
+
+import uk.ac.ncl.team15.android.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,15 +30,12 @@ public class SplashActivity extends AppCompatActivity {
         videoView.setZOrderOnTop(true);//this line solve the problem
         videoView.setVideoURI(video);
 
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-               if(isFinishing())
-               return;
+        videoView.setOnCompletionListener(mp -> {
+            if(isFinishing())
+                return;
 
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-               finish();
-            }
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            finish();
         });
         videoView.start();
     }

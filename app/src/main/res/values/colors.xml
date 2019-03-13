@@ -3,5 +3,6 @@
     <color name="colorPrimary">#162B75</color>
     <color name="colorPrimaryDark">#162b75</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="signin_title">#34495E</color>
 
 </resources>

@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="uk.ac.ncl.team15.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".SaggezzaApplication"
+
+        android:name="uk.ac.ncl.team15.android.SaggezzaApplication"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
+
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SearchActivity"
-            android:exported="true"
-            ></activity>
+
+        <activity android:name="uk.ac.ncl.team15.android.ForgotPasswordActivity" />
+
         <activity
-            android:name=".DashboardActivity"
+            android:name="uk.ac.ncl.team15.android.DashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AdminActivity"
+            android:name="uk.ac.ncl.team15.android.UserProfileActivity"
             android:exported="true"
-            android:label="@style/AppTheme"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name="uk.ac.ncl.team15.android.SplashActivity"
             android:exported="true"
-            android:label="@style/AppTheme">
+
+            android:label="@string/title_activity_splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

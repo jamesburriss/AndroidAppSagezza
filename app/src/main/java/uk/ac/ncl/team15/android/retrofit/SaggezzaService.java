@@ -1,9 +1,9 @@
-package com.example.myapplication.retrofit;
+package uk.ac.ncl.team15.android.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.*;
-import com.example.myapplication.retrofit.models.ModelToken;
-import com.example.myapplication.retrofit.models.ModelUsers;
+import uk.ac.ncl.team15.android.retrofit.models.ModelToken;
+import uk.ac.ncl.team15.android.retrofit.models.ModelUsers;
 
 public interface SaggezzaService
 {

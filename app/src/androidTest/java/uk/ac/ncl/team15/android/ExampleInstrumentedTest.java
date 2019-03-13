@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package uk.ac.ncl.team15.android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.myapplication", appContext.getPackageName());
+        assertEquals("uk.ac.ncl.team15.android", appContext.getPackageName());
     }
 }
