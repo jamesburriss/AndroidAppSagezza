@@ -28,7 +28,7 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="uk.ac.ncl.team15.android.AdminActivity"
+            android:name="uk.ac.ncl.team15.android.UserProfileActivity"
             android:exported="true"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />

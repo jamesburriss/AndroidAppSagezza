@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="uk.ac.ncl.team15.android.AdminActivity">
+    tools:context="uk.ac.ncl.team15.android.UserProfileActivity">
 
     <ListView
         android:id="@+id/ListViewId"

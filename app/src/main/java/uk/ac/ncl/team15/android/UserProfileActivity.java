@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import uk.ac.ncl.team15.android.R;
 
-public class AdminActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
     ListView listView;
     private String [] info;
     @Override
@@ -24,7 +24,7 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                Intent intent = new Intent(AdminActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(UserProfileActivity.this, DashboardActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -48,10 +48,10 @@ public class AdminActivity extends AppCompatActivity {
     };
 
     String infoArray =
-          "James burris";
+          "Example User";
     String[] phoneNo = {
-            "07936459821"};
-    String[] emailArray = {"jamesburris@nonce.com" };
+            "01234567890"};
+    String[] emailArray = {"a@b.com" };
 
 }
 
