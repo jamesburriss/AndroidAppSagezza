@@ -33,7 +33,7 @@ android {
 
         buildConfigField "String", "SERVER_PROTO", getServerProto()
         buildConfigField "String", "SERVER_HOST", getServerHost()
-        buildConfigField ("int", "SERVER_PORT", getServerPort())
+        buildConfigField("int", "SERVER_PORT", getServerPort())
     }
     buildTypes {
         release {

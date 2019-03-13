@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-  <include layout="@layout/toolbar"
-      android:id="@+id/toolbar"
-     />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp" />
 
 
     <LinearLayout

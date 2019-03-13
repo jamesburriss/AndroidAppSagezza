@@ -8,6 +8,10 @@
     <string name="login_forgot_password">Forgot your password</string>
     <string name="dashboard_welcome">Welcome @NAME</string>
     <string name="action_settings">Settings</string>
-
-
+    <string-array name="my_People">
+        <item>Husain</item>
+        <item>James</item>
+        <item>Callum</item>
+        <item>Deyan</item>
+    </string-array>
 </resources>
