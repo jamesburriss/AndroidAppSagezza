@@ -32,7 +32,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
-                android:text="Email-"
+                android:text="Email -"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/actualEmail"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +45,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:paddingTop="3dp"
                     android:id="@+id/actualEmail"
                     android:layout_width="250dp"
                     android:layout_height="43dp"
@@ -85,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
-                android:text="Phone-"
+                android:text="Phone -"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/actualPhone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,12 +101,13 @@
 
                 <TextView
                     android:id="@+id/actualPhone"
+                    android:paddingTop="3dp"
                     android:layout_width="228dp"
                     android:layout_height="43dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="32dp"
-                    android:text="phone"
+                    android:text="Phone"
                     android:textColor="@android:color/background_dark"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -130,21 +132,21 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="354dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/dobHint"
-                android:layout_width="144dp"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="DateOfBirth-"
+                android:text="Date Of Birth -"
                 android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -152,7 +154,8 @@
                     android:id="@+id/actual_dob"
                     android:layout_width="228dp"
                     android:layout_height="43dp"
-                    android:text="TextView"
+                    android:paddingTop="3dp"
+                    android:text="Date Of Birth"
                     android:textColor="@android:color/background_dark"
                     android:textSize="20sp" />
             </LinearLayout>

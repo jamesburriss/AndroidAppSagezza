@@ -35,6 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
+                finish();
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
                 startActivity(intent);
                 return true;
