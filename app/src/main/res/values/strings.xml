@@ -14,6 +14,9 @@
     <string name="login_btn">LOGIN</string>
     <string name="login_forgot_password">Forgot your password</string>
 
+
+    <string name="user_profile_image_desc">User Profile Image</string>
+
     <string name="action_settings">Settings</string>
     <string-array name="list_of_people">
         <item>hussain</item>
