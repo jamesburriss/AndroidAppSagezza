@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import uk.ac.ncl.team15.android.R;
-
-import uk.ac.ncl.team15.android.retrofit.models.ModelToken;
+import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
+import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,12 +49,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validate(String userName, String userPassword) {
-        Call<ModelToken> callMt = SaggezzaApplication.getRetrofitService().fetch_token(userName, userPassword);
-        callMt.enqueue(new Callback<ModelToken>() {
+        Call<ModelAuth> callMt = SaggezzaApplication.getRetrofitService().fetch_token(userName, userPassword);
+        callMt.enqueue(new Callback<ModelAuth>() {
             @Override
-            public void onResponse(Call<ModelToken> call, Response<ModelToken> response) {
+            public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.code() == 200) {
                     SaggezzaApplication.setUserAuthToken(response.body().getToken());
+                    SaggezzaApplication.setUserAuthData(response.body().getUserData());
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     LoginActivity.this.finish();
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ModelToken> call, Throwable throwable) {
+            public void onFailure(Call<ModelAuth> call, Throwable throwable) {
                 System.out.println("[!] Get token failed!");
                 if (throwable != null)
                     throwable.printStackTrace();

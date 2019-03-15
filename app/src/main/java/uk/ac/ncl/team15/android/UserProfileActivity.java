@@ -10,10 +10,15 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
+import uk.ac.ncl.team15.android.retrofit.models.ModelUserData;
+import uk.ac.ncl.team15.android.util.UserAttribListBuilder;
 
 
 public class UserProfileActivity extends AppCompatActivity {
@@ -40,28 +45,15 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        ListView userAttribList = findViewById(R.id.userAttributesList);
+        final ListView userAttribList = findViewById(R.id.userAttributesList);
+        final TextView userRealName = findViewById(R.id.userRealName);
 
-        // Below from: https://stackoverflow.com/questions/8554443/custom-list-item-to-listview-android
-        // Create the item mapping
-        String[] from = new String[] { "attribName", "attribDesc" };
-        int[] to = new int[] { R.id.attribName, R.id.attribDesc};
+        final ModelUserData userData = SaggezzaApplication.getUserAuthData();
 
-        // Add some rows
-        List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("attribName", "Gender"); // This will be shown in R.id.attribName
-        map.put("attribDesc", "male"); // And this in R.id.attribDesc
-        fillMaps.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("attribName", "Nationality");
-        map.put("attribDesc", "British");
-        fillMaps.add(map);
-
-        SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.listview_layout, from, to);
-        userAttribList.setAdapter(adapter);
+        // NOTE: Using SaggezzaApplication.getUserAuthData() is for development purposes
+        userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
+        userAttribList.setAdapter(new UserAttribListBuilder(userData).buildSimpleAdapter(this));
     }
 }
 
