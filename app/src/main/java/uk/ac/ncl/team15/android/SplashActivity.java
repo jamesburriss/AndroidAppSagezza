@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.VideoView;
 
-import uk.ac.ncl.team15.android.R;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -18,7 +18,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".searchActivity"
             android:exported="true"/>
-        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name="uk.ac.ncl.team15.android.ForgotPasswordActivity" />
+
         <activity
             android:name=".DashboardActivity"
             android:exported="true"
