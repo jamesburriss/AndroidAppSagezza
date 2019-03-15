@@ -3,9 +3,11 @@ package uk.ac.ncl.team15.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -16,7 +18,6 @@ import java.util.List;
 
 public class UserProfileActivity extends AppCompatActivity {
     ListView listView;
-    private String [] info;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -7,6 +7,10 @@
     android:visibility="visible"
     tools:context="uk.ac.ncl.team15.android.UserProfileActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <ListView
         android:id="@+id/userAttributesList"
         android:layout_width="393dp"
@@ -26,6 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="320dp"
+        android:layout_marginTop="308dp"
         android:layout_marginBottom="28dp"
         android:background="@drawable/admin_gradient"
         android:gravity="center_horizontal"
@@ -49,6 +54,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:textSize="20sp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
