@@ -2,7 +2,6 @@ package uk.ac.ncl.team15.android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,7 +12,7 @@ import android.widget.SearchView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class searchActivity extends AppCompatActivity {
+public class UserSearchActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
 
@@ -21,11 +20,11 @@ public class searchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_user_search);
         ListView lv=(ListView)findViewById(R.id.peopleList);
         ArrayList<String>  arrayPeople =new ArrayList<String>();
         arrayPeople.addAll(Arrays.asList(getResources().getStringArray(R.array.list_of_people)));
-        adapter = new ArrayAdapter<>(searchActivity.this, android.R.layout.simple_list_item_1,arrayPeople);
+        adapter = new ArrayAdapter<>(UserSearchActivity.this, android.R.layout.simple_list_item_1,arrayPeople);
         lv.setAdapter(adapter);
     }
 

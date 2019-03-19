@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".searchActivity"
+        <activity android:name=".UserSearchActivity"
             android:exported="true"
             android:theme="@style/AppTh"
             />
