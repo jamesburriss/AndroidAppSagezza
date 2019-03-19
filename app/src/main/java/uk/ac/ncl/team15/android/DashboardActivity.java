@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import uk.ac.ncl.team15.android.R;
 
@@ -27,6 +28,9 @@ public class DashboardActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Dashboard"); // TODO: Move this to xml?
         setSupportActionBar(toolbar);
+
+        TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
+        welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getUserAuthData().getFirstName()));
 
         CardView userSearchCard = findViewById(R.id.userSearchCard);
         userSearchCard.setOnClickListener((view) -> {

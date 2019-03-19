@@ -8,7 +8,7 @@
     <string name="title_activity_user_profile">User Profile</string>
     <string name="title_activity_user_search">User Search</string>
 
-    <string name="dashboard_welcome">Welcome {NAME}</string>
+    <string name="dashboard_welcome">Welcome %s</string>
 
     <string name="login_title">Sign In</string>
     <string name="login_email_hint">Email</string>
