@@ -85,6 +85,10 @@ public class UserSearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        searchView.setIconified(false);
+        searchView.requestFocusFromTouch();
+
         return super.onCreateOptionsMenu(menu);
     }
 }
