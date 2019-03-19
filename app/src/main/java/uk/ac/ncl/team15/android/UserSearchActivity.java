@@ -40,6 +40,7 @@ public class UserSearchActivity extends AppCompatActivity {
         inflater.inflate(R.menu.search_people, menu);
         MenuItem item = menu.findItem(R.id.impli_search);
         SearchView searchView = (SearchView)item.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         //searchView.setOnCloseListener();
         /* searchView.setOnSearchClickListener(v -> {
