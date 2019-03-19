@@ -8,12 +8,12 @@ public class ModelAuth {
 
     @SerializedName("user_data")
     @Expose
-    private ModelUserData userData;
+    private ModelUser userData;
     @SerializedName("token")
     @Expose
     private String token;
 
-    public ModelUserData getUserData() {
+    public ModelUser getUserData() {
         return userData;
     }
 

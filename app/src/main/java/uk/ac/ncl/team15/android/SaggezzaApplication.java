@@ -3,7 +3,7 @@ package uk.ac.ncl.team15.android;
 import android.app.Application;
 
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
-import uk.ac.ncl.team15.android.retrofit.models.ModelUserData;
+import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.ValueContainer;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SaggezzaApplication extends Application
 {
     private static ValueContainer<String> userAuthToken = new ValueContainer<>();
-    private static ValueContainer<ModelUserData> userAuthData = new ValueContainer<>();
+    private static ValueContainer<ModelUser> userAuthData = new ValueContainer<>();
     private static SaggezzaService retrofitService;
 
     @Override
@@ -65,11 +65,11 @@ public class SaggezzaApplication extends Application
         userAuthToken.set(token);
     }
 
-    public static ModelUserData getUserAuthData() {
+    public static ModelUser getUserAuthData() {
         return userAuthData.get();
     }
 
-    public static void setUserAuthData(ModelUserData token) {
+    public static void setUserAuthData(ModelUser token) {
         userAuthData.set(token);
     }
 }

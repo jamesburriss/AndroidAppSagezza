@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import uk.ac.ncl.team15.android.R;
-import uk.ac.ncl.team15.android.retrofit.models.ModelUserData;
+import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 
 public class UserAttribListBuilder {
-    private ModelUserData userData;
+    private ModelUser userData;
 
     private List<AttribKeyValuePair> attribs;
 
-    public UserAttribListBuilder(ModelUserData userData) {
+    public UserAttribListBuilder(ModelUser userData) {
         this.userData = userData;
 
         doBuildAttribList();
