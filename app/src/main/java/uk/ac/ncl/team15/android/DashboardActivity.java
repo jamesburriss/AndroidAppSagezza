@@ -30,7 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         CardView userSearchCard = findViewById(R.id.userSearchCard);
         userSearchCard.setOnClickListener((view) -> {
-            Intent intent = new Intent(DashboardActivity.this, UserProfileActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
             startActivity(intent);
         });
     }
