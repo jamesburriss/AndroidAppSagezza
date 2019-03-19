@@ -19,9 +19,10 @@
         <activity
             android:name=".UserSearchActivity"
             android:exported="true"
+            android:label="@string/title_activity_user_search"
             android:theme="@style/AppTh" />
         <activity
-            android:name="uk.ac.ncl.team15.android.ForgotPasswordActivity" />
+            android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".DashboardActivity"
             android:exported="true"
@@ -30,10 +31,12 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
+            android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserProfileActivity"
             android:exported="true"
+            android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"

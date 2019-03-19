@@ -55,7 +55,7 @@ public class UserAttribListBuilder {
             fillMaps.add(map);
         }
 
-        SimpleAdapter adapter = new SimpleAdapter(context, fillMaps, R.layout.listview_layout, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(context, fillMaps, R.layout.listview_user_attribute, from, to);
         return adapter;
     }
 

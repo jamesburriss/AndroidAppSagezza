@@ -187,4 +187,11 @@ public class ModelUser
     {
         this.department = department;
     }
+
+    /*
+     * Begin custom methods, prior are auto-generated
+     */
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 }

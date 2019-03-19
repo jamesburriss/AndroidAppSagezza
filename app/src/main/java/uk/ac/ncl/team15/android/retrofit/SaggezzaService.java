@@ -23,5 +23,8 @@ public interface SaggezzaService
     Call<ModelUsers> users(@Query("page") int page);
 
     @GET("users/")
+    Call<ModelUsers> users(@Query("search") String search, @Query("page") int page);
+
+    @GET("users/")
     Call<ModelUsers> users(@Query("search") String search, @Query("department") String department, @Query("page") int page);
 }

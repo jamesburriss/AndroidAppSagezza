@@ -5,6 +5,8 @@
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_splash">Saggezza</string>
+    <string name="title_activity_user_profile">User Profile</string>
+    <string name="title_activity_user_search">User Search</string>
 
     <string name="dashboard_welcome">Welcome {NAME}</string>
 
@@ -18,11 +20,4 @@
     <string name="user_profile_image_desc">User Profile Image</string>
 
     <string name="action_settings">Settings</string>
-    <string-array name="list_of_people">
-        <item>hussain</item>
-        <item>james</item>
-        <item>deyan</item>
-        <item>Callum</item>
-    </string-array>
-
 </resources>

@@ -7,7 +7,7 @@
     tools:context=".UserSearchActivity">
 
     <ListView
-        android:id="@+id/peopleList"
+        android:id="@+id/userResultList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
