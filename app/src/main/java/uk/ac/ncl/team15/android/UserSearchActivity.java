@@ -40,10 +40,12 @@ public class UserSearchActivity extends AppCompatActivity {
         inflater.inflate(R.menu.search_people, menu);
         MenuItem item = menu.findItem(R.id.impli_search);
         SearchView searchView = (SearchView)item.getActionView();
+
         //searchView.setOnCloseListener();
-        searchView.setOnSearchClickListener(v -> {
+        /* searchView.setOnSearchClickListener(v -> {
             getWindow().setTitle("");
-        });
+        }); */
+        
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
