@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".JobSearchActivity"></activity>
+        <activity android:name=".JobAdPage"></activity>
+        <activity android:name=".JobSearchActivity" />
         <activity
             android:name=".UserSearchActivity"
             android:exported="true"
