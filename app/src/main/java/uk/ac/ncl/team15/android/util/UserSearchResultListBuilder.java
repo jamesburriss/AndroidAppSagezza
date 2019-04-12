@@ -32,7 +32,7 @@ public class UserSearchResultListBuilder {
 
         // TODO: Use strings.xml for translations
         for (ModelUser user : users) {
-            results.add(new ResultEntry(user.getFullName(), user.getDepartment()));
+            results.add(new ResultEntry(user.getFullName(), user.getPosition()));
         }
     }
 

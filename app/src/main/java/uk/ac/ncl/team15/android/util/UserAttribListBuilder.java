@@ -31,7 +31,7 @@ public class UserAttribListBuilder {
         attribs = new ArrayList<>();
 
         // TODO: Use strings.xml for translations
-        attribs.add(new AttribKeyValuePair("Department", userData.getDepartment()));
+        attribs.add(new AttribKeyValuePair("Position", userData.getPosition()));
         attribs.add(new AttribKeyValuePair("Phone Number", userData.getPhoneNumber()));
         attribs.add(new AttribKeyValuePair("DOB", userData.getDob())); // TODO: This needs to be different per view level...
         attribs.add(new AttribKeyValuePair("Email", userData.getEmail()));
