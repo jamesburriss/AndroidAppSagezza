@@ -16,13 +16,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".JobAdPage"></activity>
-        <activity android:name=".JobSearchActivity" />
-        <activity
-            android:name=".UserSearchActivity"
-            android:exported="true"
-            android:label="@string/title_activity_user_search"
-            android:theme="@style/AppTh" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".DashboardActivity"
@@ -39,6 +32,21 @@
             android:exported="true"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserSearchActivity"
+            android:exported="true"
+            android:label="@string/title_activity_user_search"
+            android:theme="@style/AppTh" />
+        <activity
+            android:name=".JobAdActivity"
+            android:exported="true"
+            android:label="@string/title_activity_job_ad"
+            android:theme="@style/AppTh" />
+        <activity
+            android:name=".JobSearchActivity"
+            android:exported="true"
+            android:label="@string/title_activity_job_search"
+            android:theme="@style/AppTh" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

@@ -31,7 +31,6 @@ public class UserSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_user_search);
 
         lv = findViewById(R.id.userResultList);
@@ -53,11 +52,6 @@ public class UserSearchActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.impli_search);
         SearchView searchView = (SearchView)item.getActionView();
         searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        //searchView.setOnCloseListener();
-        /* searchView.setOnSearchClickListener(v -> {
-            getWindow().setTitle("");
-        }); */
         
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

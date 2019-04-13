@@ -12,60 +12,79 @@ public class ModelUser implements Parcelable
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("title")
     @Expose
     private String title;
+
     @SerializedName("first_name")
     @Expose
     private String firstName;
+
     @SerializedName("last_name")
     @Expose
     private String lastName;
+
     @SerializedName("phone_number")
     @Expose
     private String phoneNumber;
+
     @SerializedName("position")
     @Expose
     private String position;
+
     @SerializedName("address")
     @Expose
     private String address;
+
     @SerializedName("email")
     @Expose
     private String email;
+
     @SerializedName("dob")
     @Expose
     private String dob;
+
     @SerializedName("personal_email")
     @Expose
     private String personalEmail;
+
     @SerializedName("r2w")
     @Expose
     private Object r2w;
+
     @SerializedName("hmrc")
     @Expose
     private Object hmrc;
+
     @SerializedName("poa")
     @Expose
     private Object poa;
+
     @SerializedName("dbs")
     @Expose
     private Object dbs;
+
     @SerializedName("marital_status")
     @Expose
     private String maritalStatus;
+
     @SerializedName("nationality")
     @Expose
     private String nationality;
+
     @SerializedName("visa_status")
     @Expose
     private String visaStatus;
+
     @SerializedName("medical_conditions")
     @Expose
     private String medicalConditions;
+
     @SerializedName("languages_spoken")
     @Expose
     private String languagesSpoken;
+
     @SerializedName("gender")
     @Expose
     private String gender;

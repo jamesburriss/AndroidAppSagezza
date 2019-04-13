@@ -10,8 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import uk.ac.ncl.team15.android.R;
-
 public class DashboardActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,6 +33,12 @@ public class DashboardActivity extends AppCompatActivity {
         CardView userSearchCard = findViewById(R.id.userSearchCard);
         userSearchCard.setOnClickListener((view) -> {
             Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
+            startActivity(intent);
+        });
+
+        CardView jobSearchCard = findViewById(R.id.jobSearchCard);
+        jobSearchCard.setOnClickListener((view) -> {
+            Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
             startActivity(intent);
         });
     }
