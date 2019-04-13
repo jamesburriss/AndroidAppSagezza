@@ -1,6 +1,7 @@
 package uk.ac.ncl.team15.android;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +35,15 @@ public class UserSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_search);
 
         lv = findViewById(R.id.userResultList);
+
+        lv.setOnItemClickListener((adapter, v, position, id) -> {
+            HashMap<String, Object> li = (HashMap<String, Object>) lv.getItemAtPosition(position);
+            int selectedUserId = (int) li.get("_userId");
+
+            Intent profileIntent = new Intent(UserSearchActivity.this, UserProfileActivity.class);
+            profileIntent.putExtra("_userId", selectedUserId);
+            startActivity(profileIntent);
+        });
     }
 
     @Override
@@ -60,7 +72,7 @@ public class UserSearchActivity extends AppCompatActivity {
             }
 
             private boolean onQuery(String query) {
-                Call<ModelUsers> callMu = SaggezzaApplication.getRetrofitService().users(query, 1);
+                Call<ModelUsers> callMu = SaggezzaApplication.getRetrofitService().users(query, null, 1);
                 callMu.enqueue(new Callback<ModelUsers>() {
                     @Override
                     public void onResponse(Call<ModelUsers> call, Response<ModelUsers> response) {

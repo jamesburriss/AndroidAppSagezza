@@ -32,7 +32,7 @@ public class UserSearchResultListBuilder {
 
         // TODO: Use strings.xml for translations
         for (ModelUser user : users) {
-            results.add(new ResultEntry(user.getFullName(), user.getPosition()));
+            results.add(new ResultEntry(user.getId(), user.getFullName(), user.getPosition()));
         }
     }
 
@@ -40,15 +40,16 @@ public class UserSearchResultListBuilder {
         // Code below based on: https://stackoverflow.com/questions/8554443/custom-list-item-to-listview-android
 
         // Create the item mapping
-        String[] from = new String[] { "userResultName", "userResultDepartment"};
-        int[] to = new int[] { R.id.userResultName, R.id.userResultDepartment};
+        String[] from = new String[] { "userResultName", "userResultPosition"};
+        int[] to = new int[] { R.id.userResultName, R.id.userResultPosition};
 
         List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 
         for (ResultEntry result : this.results) {
             HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("_userId", result.id);
             map.put("userResultName", result.name);
-            map.put("userResultDepartment", result.department);
+            map.put("userResultPosition", result.position);
             fillMaps.add(map);
         }
 
@@ -57,12 +58,14 @@ public class UserSearchResultListBuilder {
     }
 
     private static final class ResultEntry {
+        final int id;
         final String name;
-        final String department;
+        final String position;
 
-        ResultEntry(String name, String department) {
+        ResultEntry(int id, String name, String position) {
+            this.id = id;
             this.name = name;
-            this.department = department;
+            this.position = position;
         }
     }
 }

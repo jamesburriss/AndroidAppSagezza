@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
 
 import retrofit2.Call;
@@ -39,13 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.editTextPassword);
         login = (Button)findViewById(R.id.btnLogin);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validate(username.getText().toString(), password.getText().toString());
-            }
-        });
-
+        login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
     }
 
     private void validate(String userName, String userPassword) {

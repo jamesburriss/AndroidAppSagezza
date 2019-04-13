@@ -1,12 +1,17 @@
 package uk.ac.ncl.team15.android;
 
 import android.app.Application;
+import android.util.Log;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.ValueContainer;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -50,6 +55,23 @@ public class SaggezzaApplication extends Application
                 .client(client)
                 .build();
         this.retrofitService = retrofit.create(SaggezzaService.class);
+    }
+
+    public static void getUserDataById(int userId, Consumer<ModelUser> callback) {
+        Call<ModelUser> callMu = retrofitService.users(userId);
+        callMu.enqueue(new Callback<ModelUser>() {
+            @Override
+            public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
+                callback.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ModelUser> call, Throwable throwable) {
+                if (throwable != null)
+                    Log.e("RETROFIT", "getUserDataById("+userId+")", throwable);
+                callback.accept(null);
+            }
+        });
     }
 
     public static SaggezzaService getRetrofitService()

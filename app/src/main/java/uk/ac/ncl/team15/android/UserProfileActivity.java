@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.UserAttribListBuilder;
 
 
@@ -40,12 +39,13 @@ public class UserProfileActivity extends AppCompatActivity {
         final ListView userAttribList = findViewById(R.id.userAttributesList);
         final TextView userRealName = findViewById(R.id.userRealName);
 
-        final ModelUser userData = SaggezzaApplication.getUserAuthData();
+        final int userId = getIntent().getIntExtra("_userId", -1);
 
-
-        // NOTE: Using SaggezzaApplication.getUserAuthData() is for development purposes
-        userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
-        userAttribList.setAdapter(new UserAttribListBuilder(userData).buildSimpleAdapter(this));
+        // lambda consumer is called after the service request is complete
+        SaggezzaApplication.getUserDataById(userId, (userData) -> {
+            userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
+            userAttribList.setAdapter(new UserAttribListBuilder(userData).buildSimpleAdapter(this));
+        });
     }
 }
 

@@ -56,7 +56,7 @@ public class JobSearchActivity extends AppCompatActivity {
             }
 
             private boolean onQuery(String query) {
-                Call<ModelUsers> callMu = SaggezzaApplication.getRetrofitService().users(query, 1);
+                Call<ModelUsers> callMu = SaggezzaApplication.getRetrofitService().users(query, null, 1);
                 callMu.enqueue(new Callback<ModelUsers>() {
                     @Override
                     public void onResponse(Call<ModelUsers> call, Response<ModelUsers> response) {
