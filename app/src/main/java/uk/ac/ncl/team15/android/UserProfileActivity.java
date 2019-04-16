@@ -42,6 +42,7 @@ public class UserProfileActivity extends AppCompatActivity {
         final TextView userRealName = findViewById(R.id.userRealName);
 
         final int userId = getIntent().getIntExtra("_userId", -1);
+        assert(userId != -1);
 
         // lambda consumer is called after the service request is complete
         SaggezzaApplication.getUserDataById(userId, (userData) -> {

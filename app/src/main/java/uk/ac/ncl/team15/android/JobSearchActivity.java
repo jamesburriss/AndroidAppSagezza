@@ -33,10 +33,10 @@ public class JobSearchActivity extends AppCompatActivity {
 
         lv.setOnItemClickListener((adapter, v, position, id) -> {
             HashMap<String, Object> li = (HashMap<String, Object>) lv.getItemAtPosition(position);
-            int selectedUserId = (int) li.get("_jobId");
+            int selectedJobId = (int) li.get("_jobId");
 
             Intent profileIntent = new Intent(JobSearchActivity.this, JobAdActivity.class);
-            profileIntent.putExtra("_jobId", selectedUserId);
+            profileIntent.putExtra("_jobId", selectedJobId);
             startActivity(profileIntent);
         });
     }

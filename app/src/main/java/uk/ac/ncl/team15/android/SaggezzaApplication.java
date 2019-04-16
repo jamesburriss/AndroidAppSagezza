@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
+import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.ValueContainer;
 
@@ -69,6 +70,23 @@ public class SaggezzaApplication extends Application
             public void onFailure(Call<ModelUser> call, Throwable throwable) {
                 if (throwable != null)
                     Log.e("RETROFIT", "getUserDataById("+userId+")", throwable);
+                callback.accept(null);
+            }
+        });
+    }
+
+    public static void getJobDataById(int jobId, Consumer<ModelJob> callback) {
+        Call<ModelJob> callMu = retrofitService.jobs(jobId);
+        callMu.enqueue(new Callback<ModelJob>() {
+            @Override
+            public void onResponse(Call<ModelJob> call, Response<ModelJob> response) {
+                callback.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ModelJob> call, Throwable throwable) {
+                if (throwable != null)
+                    Log.e("RETROFIT", "getJobDataById("+jobId+")", throwable);
                 callback.accept(null);
             }
         });
