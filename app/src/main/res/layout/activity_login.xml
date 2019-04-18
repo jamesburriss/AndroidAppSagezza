@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.775"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPasswordTitle"
         app:layout_constraintVertical_bias="0.148" />
 
 
@@ -67,9 +67,9 @@
         tools:targetApi="o" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"

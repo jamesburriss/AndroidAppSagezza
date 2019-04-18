@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
@@ -18,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,15 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.editTextEmail);
         password = (EditText)findViewById(R.id.editTextPassword);
         login = (Button)findViewById(R.id.btnLogin);
+        forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
 
         login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            }
+        });
     }
 
     private void validate(String userName, String userPassword) {
