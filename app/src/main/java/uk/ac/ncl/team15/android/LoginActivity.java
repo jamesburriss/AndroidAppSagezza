@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
 
         // forgot password
-        TextView forgotPasswordTv = findViewById(R.id.textViewForgotPassword);
+        TextView forgotPasswordTv = findViewById(R.id.tvForgotPassword);
         forgotPasswordTv.setOnClickListener((view) -> {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
@@ -65,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                System.out.println("[!] Get token failed!");
                 if (throwable != null)
-                    throwable.printStackTrace();
+                    Log.e("RETROFIT", "onFailure(...) fetching login token", throwable);
+                Toast.makeText(LoginActivity.this, "Login error: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
