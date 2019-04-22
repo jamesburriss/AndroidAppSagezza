@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
@@ -18,25 +21,31 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-
         toolbar.setTitle("Login");
 
         setSupportActionBar(toolbar);
 
-
-
-        username = (EditText)findViewById(R.id.editTextEmail);
-        password = (EditText)findViewById(R.id.editTextPassword);
-        login = (Button)findViewById(R.id.btnLogin);
-
+        // auth
+        username = findViewById(R.id.editTextEmail);
+        password = findViewById(R.id.editTextPassword);
+        login = findViewById(R.id.btnLogin);
         login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
+
+        // forgot password
+        TextView forgotPasswordTv = findViewById(R.id.tvForgotPassword);
+        forgotPasswordTv.setOnClickListener((view) -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void validate(String userName, String userPassword) {
@@ -59,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                System.out.println("[!] Get token failed!");
                 if (throwable != null)
-                    throwable.printStackTrace();
+                    Log.e("RETROFIT", "onFailure(...) fetching login token", throwable);
+                Toast.makeText(LoginActivity.this, "Login error: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -9,6 +9,7 @@
     <string name="title_activity_user_search">User Search</string>
     <string name="title_activity_job_ad">Job Ad</string>
     <string name="title_activity_job_search">Job Search</string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
     <string name="title_activity_tutorial">Tutorial</string>
 
     <string name="dashboard_welcome">Welcome %s</string>
