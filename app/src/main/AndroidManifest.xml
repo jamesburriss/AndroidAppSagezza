@@ -48,6 +48,10 @@
             android:label="@string/title_activity_job_search"
             android:theme="@style/AppTh" />
         <activity
+            android:name=".TutorialActivity"
+            android:exported="true"
+            android:label="@string/title_activity_tutorial" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash">
