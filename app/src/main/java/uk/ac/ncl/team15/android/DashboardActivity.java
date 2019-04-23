@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 
 public class DashboardActivity extends AppCompatActivity {
     @Override
@@ -23,12 +26,24 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        ModelUser userData = SaggezzaApplication.getInstance().getUserAuthData();
+        if (userData == null)
+        {
+            Log.w("DashboardActivity", "userData is null!");
+            finish();
+            SaggezzaApplication.getInstance().setUserAuthToken(null);
+            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return;
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Dashboard"); // TODO: Move this to xml?
         setSupportActionBar(toolbar);
 
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
-        welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getInstance().getUserAuthData().getFirstName()));
+        welcomeText.setText(String.format(getString(R.string.dashboard_welcome), userData.getFirstName()));
 
         CardView userSearchCard = findViewById(R.id.userSearchCard);
         userSearchCard.setOnClickListener((view) -> {
@@ -48,6 +63,8 @@ public class DashboardActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout_menu:
                 finish();
+                SaggezzaApplication.getInstance().setUserAuthData(null);
+                SaggezzaApplication.getInstance().setUserAuthToken(null);
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
