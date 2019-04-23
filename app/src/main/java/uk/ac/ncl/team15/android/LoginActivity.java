@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +13,6 @@ import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText username;
@@ -49,20 +47,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     SaggezzaApplication.getInstance().setUserAuthToken(response.body().getToken());
                     SaggezzaApplication.getInstance().setUserAuthData(response.body().getUserData());
-                    Call<ModelUser> callMu = SaggezzaApplication.getInstance().getRetrofitService().self();
-                    callMu.enqueue(new Callback<ModelUser>() {
-                        @Override
-                        public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                            if (response.code() == 200) {
-                                Log.v("TESTING", "YEEEEP");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ModelUser> call, Throwable throwable) {
-                            Log.e("TESTING", "NOOOOPE", throwable);
-                        }
-                    });
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     LoginActivity.this.finish();
@@ -75,8 +59,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                Toast.makeText(LoginActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
-                Log.e("LoginActivity", "retrofit service failure", throwable);
+                System.out.println("[!] Get token failed!");
+                if (throwable != null)
+                    throwable.printStackTrace();
             }
         });
     }
