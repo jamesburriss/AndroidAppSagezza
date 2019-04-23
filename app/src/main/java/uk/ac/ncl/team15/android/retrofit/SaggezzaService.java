@@ -22,6 +22,9 @@ public interface SaggezzaService
     /*
      * /users
      */
+    @GET("users/self")
+    Call<ModelUser> self();
+
     @GET("users/{id}")
     Call<ModelUser> users(@Path("id") int id);
 

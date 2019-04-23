@@ -3,6 +3,7 @@ package uk.ac.ncl.team15.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,10 +18,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uk.ac.ncl.team15.android.adapter.JobListAdapter;
-import uk.ac.ncl.team15.android.adapter.UserListAdapter;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
-import uk.ac.ncl.team15.android.adapter.JobSearchResultListBuilder;
 
 public class JobSearchActivity extends AppCompatActivity {
     private ListView lv;
@@ -33,8 +32,8 @@ public class JobSearchActivity extends AppCompatActivity {
         lv = findViewById(R.id.jobResultList);
 
         lv.setOnItemClickListener((adapter, v, position, id) -> {
-            HashMap<String, Object> li = (HashMap<String, Object>) lv.getItemAtPosition(position);
-            int selectedJobId = (int) li.get("_jobId");
+            ModelJob mj = (ModelJob) lv.getItemAtPosition(position);
+            int selectedJobId = mj.getId();
 
             Intent profileIntent = new Intent(JobSearchActivity.this, JobAdActivity.class);
             profileIntent.putExtra("_jobId", selectedJobId);
@@ -75,12 +74,14 @@ public class JobSearchActivity extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(JobSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                            Log.e("LoginActivity", "bad response code: " + response.code());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ModelJobs> call, Throwable throwable) {
                         Toast.makeText(JobSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                        Log.e("LoginActivity", "retrofit service failure", throwable);
                     }
                 });
                 // adapter.clear(); // NOTE: Uncomment this to clear list while waiting for network
