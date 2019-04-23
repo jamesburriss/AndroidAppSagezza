@@ -16,11 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="true"
-            android:label="@string/title_activity_forgot_password"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".DashboardActivity"
             android:exported="true"
@@ -51,6 +47,10 @@
             android:exported="true"
             android:label="@string/title_activity_job_search"
             android:theme="@style/AppTh" />
+        <activity
+            android:name=".TutorialActivity"
+            android:exported="true"
+            android:label="@string/title_activity_tutorial" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

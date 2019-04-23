@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="signin_title">#34495E</color>
 
+    <!-- Tutorial screen Navigation dots -->
+    <color name="transparent_white">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>
