@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_tutorial">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal" >
+
+        <!-- Slide images -->
+        <ImageView
+            android:id="@+id/tut_img"
+            android:layout_width="@dimen/ts_img_dim"
+            android:layout_height="@dimen/ts_img_dim" />
+
+        <!-- Slide title -->
+        <TextView
+            android:id="@+id/tut_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Sample Title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_slide"
+            android:textStyle="bold"/>
+
+        <!-- Slide description -->
+        <TextView
+            android:id="@+id/tut_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="@dimen/title_desc_padding"
+            android:paddingRight="@dimen/title_desc_padding"
+            android:text="Description goes here"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_desc" />
+
+    </LinearLayout>
+</RelativeLayout>
