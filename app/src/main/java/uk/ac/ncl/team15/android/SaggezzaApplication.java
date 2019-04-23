@@ -9,6 +9,7 @@ import retrofit2.Response;
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
+import uk.ac.ncl.team15.android.util.BitmapCache;
 import uk.ac.ncl.team15.android.util.ValueContainer;
 
 import java.io.IOException;
@@ -22,13 +23,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SaggezzaApplication extends Application
 {
-    private static ValueContainer<String> userAuthToken = new ValueContainer<>();
-    private static ValueContainer<ModelUser> userAuthData = new ValueContainer<>();
-    private static SaggezzaService retrofitService;
+    private static SaggezzaApplication instance;
+
+    private ValueContainer<String> userAuthToken = new ValueContainer<>();
+    private ValueContainer<ModelUser> userAuthData = new ValueContainer<>();
+    private SaggezzaService retrofitService;
+
+    private static final String BASE_URL = String.format("%s://%s:%d/",
+                                                BuildConfig.SERVER_PROTO,
+                                                BuildConfig.SERVER_HOST,
+                                                BuildConfig.SERVER_PORT);
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        SaggezzaApplication.instance = this;
 
         // Intercept HTTP requests to add the 'Authorization' header
         Interceptor interceptor = new Interceptor() { // Leave as anon-inner class for java compatibility <1.8
@@ -51,14 +61,14 @@ public class SaggezzaApplication extends Application
         OkHttpClient client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(String.format("%s://%s:%d/", BuildConfig.SERVER_PROTO, BuildConfig.SERVER_HOST, BuildConfig.SERVER_PORT))
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
         this.retrofitService = retrofit.create(SaggezzaService.class);
     }
 
-    public static void getUserDataById(int userId, Consumer<ModelUser> callback) {
+    public void getUserDataById(int userId, Consumer<ModelUser> callback) {
         Call<ModelUser> callMu = retrofitService.users(userId);
         callMu.enqueue(new Callback<ModelUser>() {
             @Override
@@ -75,7 +85,7 @@ public class SaggezzaApplication extends Application
         });
     }
 
-    public static void getJobDataById(int jobId, Consumer<ModelJob> callback) {
+    public void getJobDataById(int jobId, Consumer<ModelJob> callback) {
         Call<ModelJob> callMu = retrofitService.jobs(jobId);
         callMu.enqueue(new Callback<ModelJob>() {
             @Override
@@ -92,24 +102,32 @@ public class SaggezzaApplication extends Application
         });
     }
 
-    public static SaggezzaService getRetrofitService()
+    public SaggezzaService getRetrofitService()
     {
         return retrofitService;
     }
 
-    public static String getUserAuthToken() {
+    public String getUserAuthToken() {
         return userAuthToken.get();
     }
 
-    public static void setUserAuthToken(String token) {
+    public void setUserAuthToken(String token) {
         userAuthToken.set(token);
     }
 
-    public static ModelUser getUserAuthData() {
+    public ModelUser getUserAuthData() {
         return userAuthData.get();
     }
 
-    public static void setUserAuthData(ModelUser token) {
+    public void setUserAuthData(ModelUser token) {
         userAuthData.set(token);
+    }
+
+    public static SaggezzaApplication getInstance() {
+        return SaggezzaApplication.instance;
+    }
+
+    public static String userImageUrl(ModelUser modelUser) {
+        return BASE_URL + String.format("users/%d/img", modelUser.getId());
     }
 }

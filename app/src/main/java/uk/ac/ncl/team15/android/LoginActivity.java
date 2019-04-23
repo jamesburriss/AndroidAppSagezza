@@ -49,13 +49,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validate(String userName, String userPassword) {
-        Call<ModelAuth> callMt = SaggezzaApplication.getRetrofitService().fetch_token(userName, userPassword);
+        Call<ModelAuth> callMt = SaggezzaApplication.getInstance().getRetrofitService().fetch_token(userName, userPassword);
         callMt.enqueue(new Callback<ModelAuth>() {
             @Override
             public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.code() == 200) {
-                    SaggezzaApplication.setUserAuthToken(response.body().getToken());
-                    SaggezzaApplication.setUserAuthData(response.body().getUserData());
+                    SaggezzaApplication.getInstance().setUserAuthToken(response.body().getToken());
+                    SaggezzaApplication.getInstance().setUserAuthData(response.body().getUserData());
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     LoginActivity.this.finish();

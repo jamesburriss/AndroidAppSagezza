@@ -54,19 +54,19 @@ public class ModelUser
 
     @SerializedName("r2w")
     @Expose
-    private Object r2w;
+    private String r2w;
 
     @SerializedName("hmrc")
     @Expose
-    private Object hmrc;
+    private String hmrc;
 
     @SerializedName("poa")
     @Expose
-    private Object poa;
+    private String poa;
 
     @SerializedName("dbs")
     @Expose
-    private Object dbs;
+    private String dbs;
 
     @SerializedName("marital_status")
     @Expose
@@ -183,35 +183,35 @@ public class ModelUser
         this.personalEmail = personalEmail;
     }
 
-    public Object getR2w() {
+    public String getR2w() {
         return r2w;
     }
 
-    public void setR2w(Object r2w) {
+    public void setR2w(String r2w) {
         this.r2w = r2w;
     }
 
-    public Object getHmrc() {
+    public String getHmrc() {
         return hmrc;
     }
 
-    public void setHmrc(Object hmrc) {
+    public void setHmrc(String hmrc) {
         this.hmrc = hmrc;
     }
 
-    public Object getPoa() {
+    public String getPoa() {
         return poa;
     }
 
-    public void setPoa(Object poa) {
+    public void setPoa(String poa) {
         this.poa = poa;
     }
 
-    public Object getDbs() {
+    public String getDbs() {
         return dbs;
     }
 
-    public void setDbs(Object dbs) {
+    public void setDbs(String dbs) {
         this.dbs = dbs;
     }
 

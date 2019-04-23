@@ -28,7 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
-        welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getUserAuthData().getFirstName()));
+        welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getInstance().getUserAuthData().getFirstName()));
 
         CardView userSearchCard = findViewById(R.id.userSearchCard);
         userSearchCard.setOnClickListener((view) -> {

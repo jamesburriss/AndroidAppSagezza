@@ -3,7 +3,6 @@ package uk.ac.ncl.team15.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,9 +16,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.ac.ncl.team15.android.adapter.JobListAdapter;
+import uk.ac.ncl.team15.android.adapter.UserListAdapter;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
-import uk.ac.ncl.team15.android.util.JobSearchResultListBuilder;
+import uk.ac.ncl.team15.android.adapter.JobSearchResultListBuilder;
 
 public class JobSearchActivity extends AppCompatActivity {
     private ListView lv;
@@ -61,7 +62,7 @@ public class JobSearchActivity extends AppCompatActivity {
             }
 
             private boolean onQuery(String query) {
-                Call<ModelJobs> callJs = SaggezzaApplication.getRetrofitService().jobs(query, null, null, null, 1);
+                Call<ModelJobs> callJs = SaggezzaApplication.getInstance().getRetrofitService().jobs(query, null, null, null, 1);
                 callJs.enqueue(new Callback<ModelJobs>() {
                     @Override
                     public void onResponse(Call<ModelJobs> call, Response<ModelJobs> response) {
@@ -70,7 +71,7 @@ public class JobSearchActivity extends AppCompatActivity {
                             List<ModelJob> jobs = responseBody.getJobs();
 
                             // TODO: Find a better way to update this list without setAdapter
-                            lv.setAdapter(new JobSearchResultListBuilder(jobs).buildSimpleAdapter(JobSearchActivity.this));
+                            lv.setAdapter(new JobListAdapter(JobSearchActivity.this.getApplicationContext(), jobs));
                         }
                         else {
                             Toast.makeText(JobSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();

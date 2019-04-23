@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import uk.ac.ncl.team15.android.util.UserAttribListBuilder;
+import uk.ac.ncl.team15.android.adapter.UserAttribListBuilder;
+import uk.ac.ncl.team15.android.util.DownloadImageTask;
 
 
 public class UserProfileActivity extends AppCompatActivity {
@@ -40,14 +42,18 @@ public class UserProfileActivity extends AppCompatActivity {
 
         final ListView userAttribList = findViewById(R.id.userAttributesList);
         final TextView userRealName = findViewById(R.id.userRealName);
+        final ImageView userImg = findViewById(R.id.userImg);
 
         final int userId = getIntent().getIntExtra("_userId", -1);
         assert(userId != -1);
 
+        userImg.setImageResource(R.drawable.user);
+
         // lambda consumer is called after the service request is complete
-        SaggezzaApplication.getUserDataById(userId, (userData) -> {
+        SaggezzaApplication.getInstance().getInstance().getUserDataById(userId, (userData) -> {
             userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
             userAttribList.setAdapter(new UserAttribListBuilder(userData).buildSimpleAdapter(this));
+            new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(userData));
         });
     }
 }

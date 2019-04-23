@@ -1,4 +1,4 @@
-package uk.ac.ncl.team15.android.util;
+package uk.ac.ncl.team15.android.adapter;
 
 import android.content.Context;
 import android.widget.SimpleAdapter;

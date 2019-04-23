@@ -2,10 +2,7 @@ package uk.ac.ncl.team15.android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import uk.ac.ncl.team15.android.util.UserAttribListBuilder;
 
 public class JobAdActivity extends AppCompatActivity {
 
@@ -21,7 +18,7 @@ public class JobAdActivity extends AppCompatActivity {
         assert(jobId != -1);
 
         // lambda consumer is called after the service request is complete
-        SaggezzaApplication.getJobDataById(jobId, (jobData) -> {
+        SaggezzaApplication.getInstance().getJobDataById(jobId, (jobData) -> {
             jobTitleTv.setText(jobData.getTitle());
             jobDescriptionTv.setText(jobData.getDescription());
         });
