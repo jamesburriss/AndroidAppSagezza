@@ -46,11 +46,6 @@ public class UserListAdapter extends ArrayAdapter<ModelUser> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        convertView.setOnClickListener((v) -> {
-            Intent profileIntent = new Intent(getContext(), UserProfileActivity.class);
-            profileIntent.putExtra("_userId", mu.getId());
-            getContext().startActivity(profileIntent);
-        });
         viewHolder.txtName.setText(mu.getFullName());
         viewHolder.txtPosition.setText(mu.getPosition());
         viewHolder.imgUser.setImageResource(R.drawable.user);

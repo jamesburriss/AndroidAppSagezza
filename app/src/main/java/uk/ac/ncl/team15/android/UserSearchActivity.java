@@ -29,6 +29,15 @@ public class UserSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_search);
 
         lv = findViewById(R.id.userResultList);
+
+        lv.setOnItemClickListener((adapter, v, position, id) -> {
+            ModelUser mu = (ModelUser) lv.getItemAtPosition(position);
+            int selectedUserId = mu.getId();
+
+            Intent profileIntent = new Intent(UserSearchActivity.this, UserProfileActivity.class);
+            profileIntent.putExtra("_userId", selectedUserId);
+            startActivity(profileIntent);
+        });
     }
 
     @Override
