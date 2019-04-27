@@ -34,13 +34,12 @@ import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.DialogHelper;
 import uk.ac.ncl.team15.android.util.DownloadImageTask;
 import uk.ac.ncl.team15.android.util.StaticAttributeMap;
+import uk.ac.ncl.team15.android.util.UserAttributeValidators;
 
 import static uk.ac.ncl.team15.android.SaggezzaApplication.getInstance;
 
 
 public class UserProfileActivity extends AppCompatActivity {
-    private static final UserAttribute.UserAttribValidator NOT_EMPTY = ((mu, val) -> val != null && !val.isEmpty());
-
     private static StaticAttributeMap<String, String> MAP_GENDER =
         new StaticAttributeMap<String, String>()
             .map("M", "Male")
@@ -182,7 +181,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 new UserAttribute(
                     "Position", modelUser.getPosition(), // key, value
                     (mu, val) -> mu.setPosition(val) // setter
-                ).setValidator(NOT_EMPTY));
+                ).setValidator(UserAttributeValidators.NOT_EMPTY));
         attribs.add(
                 new UserAttribute(
                     "Phone Number", modelUser.getPhoneNumber(),
@@ -212,7 +211,8 @@ public class UserProfileActivity extends AppCompatActivity {
             attribs.add(
                     new UserAttribute(
                         "DOB", modelUser.getDob(), // TODO: Process this value correctly
-                        (mu, val) -> mu.setDob(val)));
+                        (mu, val) -> mu.setDob(val))
+                    .setValidator(UserAttributeValidators.matchesRegex("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")));
             // TODO: Next of kin
         }
 
@@ -252,7 +252,7 @@ public class UserProfileActivity extends AppCompatActivity {
         private String key;
         private String value;
         private UserAttribSetter setter;
-        private UserAttribValidator validator = null;
+        private UserAttributeValidators.Validator validator = null;
         private Consumer<ModelUser> actionCallback = null;
         private Object actionIcon;
         private Map<String, String> options = null;
@@ -275,15 +275,17 @@ public class UserProfileActivity extends AppCompatActivity {
             setter.set(mu, val);
         }
 
-        public UserAttribValidator getValidator() {
+        public UserAttributeValidators.Validator getValidator() {
             return validator;
         }
 
         boolean isValid(ModelUser mu, String val) {
+            if (validator == null)
+                return true;
             return validator.valid(mu, val);
         }
 
-        UserAttribute setValidator(UserAttribValidator validator) {
+        UserAttribute setValidator(UserAttributeValidators.Validator validator) {
             this.validator = validator;
             return this;
         }
@@ -315,10 +317,6 @@ public class UserProfileActivity extends AppCompatActivity {
             if (this.options == null)
                 return null;
             return Collections.unmodifiableMap(this.options);
-        }
-
-        interface UserAttribValidator {
-            public boolean valid(ModelUser mu, String val);
         }
 
         interface UserAttribSetter {
