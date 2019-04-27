@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- listview_user_search_result dimens -->
+
+    <!-- listview row paddings-->
     <dimen name="row_padding">10dp</dimen>
+
+    <!-- listview_user_search_result dimens -->
     <dimen name="user_img">50dp</dimen>
-    <dimen name="user_name">15dp</dimen>
-    <dimen name="user_dept">12dp</dimen>
 
     <!-- Tutorial screen dimens -->
     <dimen name="ts_horizontal_margin">16dp</dimen>

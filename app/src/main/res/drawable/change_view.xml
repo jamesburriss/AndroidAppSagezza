@@ -3,7 +3,6 @@
         android:innerRadius="100dp"
         android:shape="ring"
         android:thicknessRatio="1.9"
-        android:src="@drawable/jam" >
         <solid android:color="@android:color/transparent" />
 
 </shape>
