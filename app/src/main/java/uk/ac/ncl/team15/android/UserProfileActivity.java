@@ -189,12 +189,11 @@ public class UserProfileActivity extends AppCompatActivity {
                     (mu, val) -> mu.setPhoneNumber(val))
                 );
 
-        Log.d("TEST", "visibility: " + modelUser.getVisibility());
         if (modelUser.getVisibility() == Constants.VISIBILITY_PUBLIC) {
             attribs.add(
                 new UserAttribute(
-                    "Birthday", modelUser.getDob(),
-                    (mu, val) -> mu.setAddress(val)));
+                    "Birthday", modelUser.getDob(), // TODO: Process this value correctly
+                    (mu, val) -> mu.setDob(val)));
         }
 
         if (modelUser.getVisibility() >= Constants.VISIBILITY_PRIVATE) {
@@ -205,15 +204,16 @@ public class UserProfileActivity extends AppCompatActivity {
             attribs.add(
                     new UserAttribute(
                         "Company Email", modelUser.getEmail(),
-                        (mu, val) -> mu.setAddress(val)));
+                        (mu, val) -> mu.setEmail(val)));
             attribs.add(
                     new UserAttribute(
                         "Personal Email", modelUser.getPersonalEmail(),
                         (mu, val) -> mu.setPersonalEmail(val)));
             attribs.add(
                     new UserAttribute(
-                        "DOB", modelUser.getDob(),
-                        (mu, val) -> mu.setAddress(val)));
+                        "DOB", modelUser.getDob(), // TODO: Process this value correctly
+                        (mu, val) -> mu.setDob(val)));
+            // TODO: Next of kin
         }
 
         if (modelUser.getVisibility() >= Constants.VISIBILITY_ADMIN) {
