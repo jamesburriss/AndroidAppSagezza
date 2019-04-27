@@ -10,16 +10,21 @@
         android:id="@+id/jobResultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_toEndOf="@id/userImg"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Job title"
         tools:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/jobResultLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_below="@id/userResultName"
+        android:text="Location of job"
         android:layout_toEndOf="@id/userImg"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="16sp" />
