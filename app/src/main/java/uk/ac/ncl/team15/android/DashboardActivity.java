@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -41,7 +43,19 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
             startActivity(intent);
         });
+        Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
+
+        tutorialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
+            }
+        });
+
+
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
