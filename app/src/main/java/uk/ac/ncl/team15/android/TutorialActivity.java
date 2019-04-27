@@ -21,6 +21,7 @@ public class TutorialActivity extends AppCompatActivity {
     private TextView[] navDots;
     private Button btn_Next;
     private Button btn_Back;
+    private Button btn_Fin;
     private int currPage;
 
     @Override
@@ -34,6 +35,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         btn_Next = (Button) findViewById(R.id.btnNext);
         btn_Back = (Button) findViewById(R.id.btnBack);
+        btn_Fin = (Button) findViewById(R.id.btnFin);
 
         addNavDots(0);
         viewPager.addOnPageChangeListener(viewListener);
@@ -49,6 +51,14 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(currPage - 1);
+            }
+        });
+
+        btn_Fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Change this part to direct it somewhere else
+                //viewPager.setCurrentItem(currPage);
             }
         });
     }
@@ -93,7 +103,12 @@ public class TutorialActivity extends AppCompatActivity {
 
             } else if (i == navDots.length - 1){
                 btn_Next.setEnabled(true);
-                btn_Next.setText("Finish");
+                btn_Next.setText("");
+                btn_Next.setVisibility(View.INVISIBLE);
+
+                btn_Fin.setEnabled(true);
+                btn_Fin.setText("Finish");
+                btn_Fin.setVisibility(View.VISIBLE);
 
                 btn_Back.setEnabled(true);
                 btn_Back.setText("Back");
