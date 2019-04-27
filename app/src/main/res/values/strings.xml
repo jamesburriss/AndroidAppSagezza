@@ -24,4 +24,7 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="toast_update_saved">Saved</string>
+    <string name="toast_update_failed">Error when saving changes</string>
+
 </resources>

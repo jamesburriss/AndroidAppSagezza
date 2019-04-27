@@ -1,5 +1,6 @@
 package uk.ac.ncl.team15.android.retrofit;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
@@ -27,6 +28,9 @@ public interface SaggezzaService
 
     @GET("users/")
     Call<ModelUsers> users(@Query("search") String search, @Query("department") String department, @Query("page") int page);
+
+    @PATCH("users/{id}")
+    Call<ResponseBody> patchUser(@Path("id") int id, @Body ModelUser modelUser);
 
     /*
      * /jobs
