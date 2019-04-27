@@ -20,7 +20,7 @@ import uk.ac.ncl.team15.android.adapter.JobListAdapter;
 import uk.ac.ncl.team15.android.adapter.UserListAdapter;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
-import uk.ac.ncl.team15.android.adapter.JobSearchResultListBuilder;
+
 
 public class JobSearchActivity extends AppCompatActivity {
     private ListView lv;

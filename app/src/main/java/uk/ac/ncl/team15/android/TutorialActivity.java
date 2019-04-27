@@ -49,7 +49,7 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
 
-        btn_Back
+
 
         btn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
