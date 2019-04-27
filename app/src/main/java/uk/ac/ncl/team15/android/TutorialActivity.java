@@ -47,6 +47,8 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
 
+        btn_Back
+
         btn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +103,7 @@ public class TutorialActivity extends AppCompatActivity {
             } else if (i == navDots.length - 1){
                 btn_Next.setEnabled(true);
                 btn_Next.setText("Finish");
+
 
                 btn_Back.setEnabled(true);
                 btn_Back.setText("Back");
