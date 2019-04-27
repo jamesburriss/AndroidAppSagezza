@@ -1,17 +1,14 @@
 package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TutorialActivity extends AppCompatActivity {
@@ -61,16 +58,10 @@ public class TutorialActivity extends AppCompatActivity {
         btn_Fin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Change this part to direct it somewhere else
-                //viewPager.setCurrentItem(currPage);
+                startActivity(new Intent(TutorialActivity.this, DashboardActivity.class));
+
             }
         });
-        
-//        CardView userSearchCard = findViewById(R.id.userSearchCard);
-//        userSearchCard.setOnClickListener((view) -> {
-//            Intent intent = new Intent(TutorialActivity.this,DashboardActivity.class);
-//            startActivity(intent);
-//        });
     }
 
     public void addNavDots(int position) {
