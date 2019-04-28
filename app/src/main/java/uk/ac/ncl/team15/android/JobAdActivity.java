@@ -13,6 +13,11 @@ public class JobAdActivity extends AppCompatActivity {
 
         final TextView jobTitleTv = findViewById(R.id.jobTitle);
         final TextView jobDescriptionTv = findViewById(R.id.DescriptionBox);
+        final TextView jobLocationTv = findViewById(R.id.jobLocation);
+        final TextView jobSalaryTv = findViewById(R.id.jobSalary);
+        final TextView jobHoursTv = findViewById(R.id.jobHours);
+        final TextView jobSkillTv = findViewById(R.id.jobSkill);
+        final TextView jobUpdateTv = findViewById(R.id.jobUpdate); //For the date
 
         final int jobId = getIntent().getIntExtra("_jobId", -1);
         assert(jobId != -1);
