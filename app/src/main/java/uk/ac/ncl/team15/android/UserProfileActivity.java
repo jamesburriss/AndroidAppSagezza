@@ -73,6 +73,7 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+
         reload();
     }
 
@@ -80,6 +81,14 @@ public class UserProfileActivity extends AppCompatActivity {
         final ListView userAttribList = findViewById(R.id.userAttributesList);
         final TextView userRealName = findViewById(R.id.userRealName);
         final ImageView userImg = findViewById(R.id.userImg);
+
+        final ListView userFileList = findViewById(R.id.userFileList);
+        final TextView fileResultName = findViewById(R.id.fileResultName);
+        final ImageView fileImg = findViewById(R.id.fileImg);
+
+//        fileImg.setImageResource(R.drawable.file);
+//        fileResultName.setText("FILE_NAME");
+
 
         final int userId = getIntent().getIntExtra("_userId", -1);
         assert(userId != -1);

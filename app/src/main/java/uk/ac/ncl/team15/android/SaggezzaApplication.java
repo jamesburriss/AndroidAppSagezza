@@ -2,6 +2,7 @@ package uk.ac.ncl.team15.android;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,12 +69,24 @@ public class SaggezzaApplication extends Application
         this.retrofitService = retrofit.create(SaggezzaService.class);
     }
 
+    public void loginAsGuest() {
+        setUserAuthToken(null);
+
+        ModelUser dummyUserData = new ModelUser();
+        dummyUserData.setFirstName("Guest");
+        setUserAuthData(dummyUserData);
+    }
+
     public void getUserDataById(int userId, Consumer<ModelUser> callback) {
         Call<ModelUser> callMu = retrofitService.users(userId);
         callMu.enqueue(new Callback<ModelUser>() {
             @Override
             public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
-                callback.accept(response.body());
+                if (response.code() == 200) {
+                    callback.accept(response.body());
+                } else {
+                    Toast.makeText(getBaseContext(), "Error fetching user data", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

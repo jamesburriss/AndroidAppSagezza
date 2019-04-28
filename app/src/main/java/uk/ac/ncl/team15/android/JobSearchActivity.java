@@ -17,10 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uk.ac.ncl.team15.android.adapter.JobListAdapter;
-import uk.ac.ncl.team15.android.adapter.UserListAdapter;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
-
 
 public class JobSearchActivity extends AppCompatActivity {
     private ListView lv;
