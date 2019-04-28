@@ -64,11 +64,6 @@ public class DashboardActivity extends AppCompatActivity {
            editor.apply();
         }
 
-
-
-
-
-
     }
 
     @Override
