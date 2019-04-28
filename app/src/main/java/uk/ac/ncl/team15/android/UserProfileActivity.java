@@ -62,6 +62,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserProfileActivity.this, DashboardActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.upload_menu:
+                //TODO:  store and use data
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
