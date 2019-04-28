@@ -41,7 +41,8 @@
         <activity
             android:name=".JobAdActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_job_ad"
+            android:theme="@style/AppTh" />
         <activity
             android:name=".JobSearchActivity"
             android:exported="true"
