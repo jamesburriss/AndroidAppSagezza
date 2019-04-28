@@ -63,4 +63,11 @@ public class ModelNextOfKin {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    /*
+     * Begin custom methods, prior are auto-generated
+     */
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 }

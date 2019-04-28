@@ -59,37 +59,33 @@ public class UserProfileAdapter extends MultiLayoutAdapter {
         public View getView(Context context, Object obj, int position, View convertView, ViewGroup parent) {
             ModelNextOfKin modelNOK = (ModelNextOfKin) obj;
 
-            AttributeViewProvider.ViewHolderAttribute viewHolder;
+            ViewHolderNOK viewHolder;
 
-            if (convertView == null || convertView.getTag() == null || !(convertView.getTag() instanceof AttributeViewProvider.ViewHolderAttribute)) {
-                viewHolder = new AttributeViewProvider.ViewHolderAttribute();
+            if (convertView == null || convertView.getTag() == null || !(convertView.getTag() instanceof ViewHolderNOK)) {
+                viewHolder = new ViewHolderNOK();
 
                 LayoutInflater inflater = LayoutInflater.from(context);
-                convertView = inflater.inflate(R.layout.listview_user_attribute, parent, false);
-                viewHolder.tvKey = convertView.findViewById(R.id.attribName);
-                viewHolder.tvValue = convertView.findViewById(R.id.attribDesc);
+                convertView = inflater.inflate(R.layout.listview_nok, parent, false);
+                viewHolder.tvNokRelationship = convertView.findViewById(R.id.tvNokRelationship);
+                viewHolder.tvNokName = convertView.findViewById(R.id.tvNokName);
+                viewHolder.tvNokAddress = convertView.findViewById(R.id.tvNokAddress);
 
                 convertView.setTag(viewHolder);
             } else {
-                viewHolder = (AttributeViewProvider.ViewHolderAttribute) convertView.getTag();
+                viewHolder = (ViewHolderNOK) convertView.getTag();
             }
 
-            viewHolder.tvKey.setText(modelNOK.getFirstName());
-            viewHolder.tvValue.setText(modelNOK.getRelationship());
+            viewHolder.tvNokRelationship.setText(modelNOK.getRelationship());
+            viewHolder.tvNokName.setText(modelNOK.getFullName());
+            viewHolder.tvNokAddress.setText(modelNOK.getAddress());
 
             return convertView;
         }
 
-        private static class ViewHolderAttribute {
-            private TextView tvKey;
-            private TextView tvValue;
-            private TextView imgAction;
-        }
-
         private static class ViewHolderNOK {
-            private TextView tvKey;
-            private TextView tvValue;
-            private TextView imgAction;
+            private TextView tvNokRelationship;
+            private TextView tvNokName;
+            private TextView tvNokAddress;
         }
     }
 }
