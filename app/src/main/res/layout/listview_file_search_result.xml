@@ -14,7 +14,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/row_padding"
         android:layout_marginRight="@dimen/row_padding"
-        android:contentDescription="@string/Listview_File_Search_Result_file_image" />
+        android:background="@drawable/file"
+        android:contentDescription="File image" />
 
     <TextView
         android:id="@+id/fileResultName"
@@ -33,5 +34,15 @@
         android:layout_below="@id/fileResultName"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:background="#EF5C4E"
+        android:text="DELETE"
+        android:textColor="#DDDDDD" />
 
 </RelativeLayout>
