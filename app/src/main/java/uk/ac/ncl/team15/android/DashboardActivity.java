@@ -66,6 +66,7 @@ public class DashboardActivity extends AppCompatActivity {
            editor.apply();
         }
 
+
     BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -96,9 +97,6 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
     @Override

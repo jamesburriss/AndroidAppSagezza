@@ -1,5 +1,6 @@
 package uk.ac.ncl.team15.android;
 
+import android.support.v7.widget.Toolbar;
 import android.widget.Adapter;
 import android.content.Intent;
 import android.graphics.Color;
@@ -53,10 +54,11 @@ public class UserProfileActivity extends AppCompatActivity {
     private List<UserAttribute> userAttributes;
     private List<FileAttribute> fileAttributes;
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.upload, menu);
         return true;
     }
 
@@ -69,7 +71,14 @@ public class UserProfileActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
+            case R.id.upload_menu:
+                finish();
 
+                final int PICKFILE_REQUEST_CODE = 8778;
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.setType("file/*");
+                startActivityForResult(i, PICKFILE_REQUEST_CODE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -79,6 +88,9 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Profile");
+        setSupportActionBar(toolbar);
 
         reload();
     }
