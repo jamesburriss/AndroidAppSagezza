@@ -68,21 +68,19 @@ public class JobSearchActivity extends AppCompatActivity {
                             ModelJobs responseBody = response.body();
                             List<ModelJob> jobs = responseBody.getJobs();
 
-                            // TODO: Find a better way to update this list without setAdapter
                             lv.setAdapter(new JobListAdapter(JobSearchActivity.this.getApplicationContext(), jobs));
                         }
                         else {
-                            Toast.makeText(JobSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                            Toast.makeText(JobSearchActivity.this, getString(R.string.JobSearch_eroor), Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ModelJobs> call, Throwable throwable) {
-                        Toast.makeText(JobSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                        Toast.makeText(JobSearchActivity.this, getString(R.string.JobSearch_eroor), Toast.LENGTH_LONG).show();
                     }
                 });
                 // adapter.clear(); // NOTE: Uncomment this to clear list while waiting for network
-
                 return false;
             }
         });

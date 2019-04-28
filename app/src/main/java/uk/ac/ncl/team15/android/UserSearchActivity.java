@@ -72,13 +72,13 @@ public class UserSearchActivity extends AppCompatActivity {
                             // TODO: Find a better way to update this list without setAdapter
                             lv.setAdapter(new UserListAdapter(UserSearchActivity.this, users));
                         } else {
-                            Toast.makeText(UserSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserSearchActivity.this, getString(R.string.UserSearch_Error), Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ModelUsers> call, Throwable throwable) {
-                        Toast.makeText(UserSearchActivity.this, "Error performing search", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UserSearchActivity.this, getString(R.string.UserSearch_Error), Toast.LENGTH_LONG).show();
                     }
                 });
                 // adapter.clear(); // NOTE: Uncomment this to clear list while waiting for network

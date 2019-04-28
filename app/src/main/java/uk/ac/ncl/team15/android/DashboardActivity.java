@@ -1,6 +1,7 @@
 package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -26,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Dashboard"); // TODO: Move this to xml?
+        toolbar.setTitle(R.string.DashboardActivity_title);
         setSupportActionBar(toolbar);
 
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
@@ -43,19 +44,32 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
             startActivity(intent);
         });
-        Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
 
-        tutorialButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
-            }
-        });
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firststart", true);
+
+
+        if (firstStart){
+
+            Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
+            tutorialButton.setVisibility(View.VISIBLE);
+            tutorialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
+                }
+            });
+           SharedPreferences.Editor editor = prefs.edit();
+           editor.putBoolean("firststart", false);
+           editor.apply();
+        }
+
+
+
+
 
 
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

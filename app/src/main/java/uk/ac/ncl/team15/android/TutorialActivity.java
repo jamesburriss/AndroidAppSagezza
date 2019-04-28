@@ -1,5 +1,6 @@
 package uk.ac.ncl.team15.android;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -88,6 +89,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onPageSelected(int i) {
             addNavDots(i);
@@ -96,7 +98,7 @@ public class TutorialActivity extends AppCompatActivity {
             // Navigation buttons
             if (i == 0) {
                 btn_Next.setEnabled(true);
-                btn_Next.setText("Next");
+                btn_Next.setText(getString(R.string.TutorialActivity_next));
 
                 btn_Back.setEnabled(false);
                 btn_Back.setText("");
@@ -108,19 +110,19 @@ public class TutorialActivity extends AppCompatActivity {
                 btn_Next.setVisibility(View.INVISIBLE);
 
                 btn_Fin.setEnabled(true);
-                btn_Fin.setText("Finish");
+                btn_Fin.setText(getString(R.string.TutorialActivity_finish));
                 btn_Fin.setVisibility(View.VISIBLE);
 
 
                 btn_Back.setEnabled(true);
-                btn_Back.setText("Back");
+                btn_Back.setText(getString(R.string.TutorialActivity_back));
                 btn_Back.setVisibility(View.VISIBLE);
             } else {
                 btn_Next.setEnabled(true);
-                btn_Next.setText("Next");
+                btn_Next.setText(getString(R.string.TutorialActivity_next));
 
                 btn_Back.setEnabled(true);
-                btn_Back.setText("Back");
+                btn_Back.setText(getString(R.string.TutorialActivity_back));
                 btn_Back.setVisibility(View.VISIBLE);
             }
         }

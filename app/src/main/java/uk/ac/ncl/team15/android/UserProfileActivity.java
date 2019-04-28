@@ -1,6 +1,8 @@
 package uk.ac.ncl.team15.android;
 
+import android.widget.Adapter;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +16,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.file.attribute.FileAttribute;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +51,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private ModelUser modelUser = null;
     private List<UserAttribute> userAttributes;
+    private List<FileAttribute> fileAttributes;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,18 +64,21 @@ public class UserProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                Intent intent = new Intent(UserProfileActivity.this, DashboardActivity.class);
+                finish();
+                Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
 
         reload();
     }
@@ -80,6 +88,35 @@ public class UserProfileActivity extends AppCompatActivity {
         final TextView userRealName = findViewById(R.id.userRealName);
         final ImageView userImg = findViewById(R.id.userImg);
 
+        //final ListView userFileList = findViewById(R.id.userFileList);
+        final TextView fileResultName = findViewById(R.id.fileResultName);
+        final ImageView fileImg = findViewById(R.id.fileImg);
+
+//        final Button buttonDelete = findViewById(R.id.buttonDelete);
+//
+//        for (FileAttribute attrib : fileAttributes) {
+//            String[] from = {"key", "value", "actionIcon"};
+//            int[] to = {R.id.attribName, R.id.attribDesc, R.id.imgAttribAction};
+//            SimpleAdapter adapter = new SimpleAdapter(UserProfileActivity.this,
+//                    maps, R.layout.listview_user_attribute, from, to);
+//            userAttribList.setAdapter(adapter);
+//        }
+//
+//        buttonDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //Position Getter
+//                View parentRow = (View) v.getParent();
+//                ListView listView = (ListView) parentRow.getParent();
+//                final int position = listView.getPositionForView(parentRow);
+//
+//                fileAttributes.remove(fileAttributes.get(position));
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//        fileResultName.setText("FILE_NAME");
+
+
         final int userId = getIntent().getIntExtra("_userId", -1);
         assert(userId != -1);
 
@@ -88,7 +125,7 @@ public class UserProfileActivity extends AppCompatActivity {
         // lambda consumer is called after the service request is complete
         getInstance().getInstance().getUserDataById(userId, (userData) -> {
             this.modelUser = userData;
-            this.userAttributes = buildAttribs(userData);
+            this.userAttributes = buildAttribs( userData);
 
             new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(userData));
             userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
@@ -125,13 +162,13 @@ public class UserProfileActivity extends AppCompatActivity {
                 UserAttribute attrib = userAttributes.get(position);
 
                 if (this.modelUser.isReadOnly()) {
-                    Toast.makeText(UserProfileActivity.this, "You do not have permission to edit this", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserProfileActivity.this, getString(R.string.UserProfileActivity_permission), Toast.LENGTH_LONG).show();
                 } else {
                     Map<String, String> options = attrib.getOptions();
 
                     Consumer<String> callback = (val) -> {
                         if (!attrib.isValid(this.modelUser, val)) {
-                            Toast.makeText(UserProfileActivity.this, "Please enter a valid value", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserProfileActivity.this, getString(R.string.UserProfileActivity_valid_value), Toast.LENGTH_LONG).show();
                             return;
                         }
                         ModelUser patchModel = new ModelUser();
@@ -323,6 +360,8 @@ public class UserProfileActivity extends AppCompatActivity {
             public void set(ModelUser mu, String val);
         }
     }
+
+
 }
 
 
