@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-i
 
 import java.nio.file.attribute.FileAttribute;
 import java.util.ArrayList;
@@ -69,9 +68,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                return true;
-            case R.id.upload_menu:
-                //TODO:  store and use data
                 return true;
 
             default:
