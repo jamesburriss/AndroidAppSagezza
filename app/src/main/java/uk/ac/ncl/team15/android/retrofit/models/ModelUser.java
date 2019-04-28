@@ -57,7 +57,7 @@ public class ModelUser
 
     @SerializedName("next_of_kins")
     @Expose
-    private List<Integer> nextOfKins = null;
+    private List<ModelNextOfKin> nextOfKins = null;
 
     @SerializedName("personal_email")
     @Expose
@@ -178,11 +178,11 @@ public class ModelUser
         this.dob = dob;
     }
 
-    public List<Integer> getNextOfKins() {
+    public List<ModelNextOfKin> getNextOfKins() {
         return nextOfKins;
     }
 
-    public void setNextOfKins(List<Integer> nextOfKins) {
+    public void setNextOfKins(List<ModelNextOfKin> nextOfKins) {
         this.nextOfKins = nextOfKins;
     }
 
