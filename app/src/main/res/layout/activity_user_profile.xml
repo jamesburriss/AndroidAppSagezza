@@ -7,9 +7,11 @@
     android:visibility="visible"
     tools:context="uk.ac.ncl.team15.android.UserProfileActivity">
 
-    <!--<include
+    <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />-->
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp" />
 
     <RelativeLayout
         android:id="@+id/rel_1"
@@ -17,7 +19,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/admin_gradient"
         android:paddingBottom="20dp"
-        android:gravity="center_horizontal" >
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp">
 
         <RelativeLayout
             android:id="@+id/imgUser"

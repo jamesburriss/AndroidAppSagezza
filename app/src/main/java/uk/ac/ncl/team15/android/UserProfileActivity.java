@@ -59,14 +59,15 @@ public class UserProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                Intent intent = new Intent(UserProfileActivity.this, DashboardActivity.class);
+                finish();
+                Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -323,6 +324,8 @@ public class UserProfileActivity extends AppCompatActivity {
             public void set(ModelUser mu, String val);
         }
     }
+
+
 }
 
 
