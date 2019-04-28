@@ -18,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
-    private Button guestLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.editTextEmail);
         password = (EditText)findViewById(R.id.editTextPassword);
         login = (Button)findViewById(R.id.btnLogin);
-        guestLogin = (Button) findViewById(R.id.btnGuest);
 
         login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
     }
