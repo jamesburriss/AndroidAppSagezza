@@ -1,12 +1,19 @@
 package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -24,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uk.ac.ncl.team15.android.adapter.UserProfileAdapter;
+import uk.ac.ncl.team15.android.retrofit.models.ModelNextOfKin;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.DialogHelper;
 import uk.ac.ncl.team15.android.util.DownloadImageTask;
@@ -146,6 +154,71 @@ public class UserProfileActivity extends AppCompatActivity {
                                     "Cancel", (val) -> callback.accept(options.get(val)));
                         }
                     }
+                } if (listObject instanceof ModelNextOfKin) {
+                    ModelNextOfKin modelNok = (ModelNextOfKin) listObject;
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
+                    builder.setTitle("Modify Details");
+
+                    LayoutInflater inflater = this.getLayoutInflater();
+                    View view = inflater.inflate(R.layout.activity_nextof_kins, null);
+                    final EditText etRelationship = view.findViewById(R.id.etRelationship);
+                    final EditText etFirstName = view.findViewById(R.id.etFirstName);
+                    final EditText etLastName = view.findViewById(R.id.etLastName);
+                    final EditText etAddress = view.findViewById(R.id.etAddress);
+                    etRelationship.setText(modelNok.getRelationship());
+                    etFirstName.setText(modelNok.getFirstName());
+                    etLastName.setText(modelNok.getLastName());
+                    etAddress.setText(modelNok.getAddress());
+                    builder.setView(view);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("Update", ((dialog, which) -> {
+                        ModelNextOfKin patchModel = new ModelNextOfKin();
+                        patchModel.setRelationship(etRelationship.getText().toString());
+                        patchModel.setFirstName(etFirstName.getText().toString());
+                        patchModel.setLastName(etLastName.getText().toString());
+                        patchModel.setAddress(etAddress.getText().toString());
+                        Call<ResponseBody> callRb = SaggezzaApplication.getInstance().getRetrofitService().nextOfKin(modelNok.getId(), patchModel);
+                        callRb.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                int msgRes = response.code() == 200 ? R.string.toast_update_saved : R.string.toast_update_failed;
+                                Toast.makeText(UserProfileActivity.this, msgRes, Toast.LENGTH_LONG).show();
+                                reload();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                                Toast.makeText(UserProfileActivity.this, R.string.toast_update_failed, Toast.LENGTH_LONG).show();
+                                if (throwable != null)
+                                    Log.e("RETROFIT", "nextOfKin(" + userId + ", patchModel)", throwable);
+                            }
+                        });
+                    }));
+                    builder.setNegativeButton("Cancel", ((dialog, which) -> dialog.cancel()));
+
+                    AlertDialog alertDialog = builder.create();
+
+                    TextWatcher twNotEmpty = new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                                    .setEnabled(s.length() != 0);
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {}
+                    };
+                    etRelationship.addTextChangedListener(twNotEmpty);
+                    etFirstName.addTextChangedListener(twNotEmpty);
+                    etLastName.addTextChangedListener(twNotEmpty);
+                    etAddress.addTextChangedListener(twNotEmpty);
+
+                    alertDialog.show();
                 }
             }
         });

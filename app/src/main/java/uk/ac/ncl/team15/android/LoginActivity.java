@@ -3,6 +3,7 @@ package uk.ac.ncl.team15.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,9 +63,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                System.out.println(R.string.LoginActivity_token_error);
                 if (throwable != null)
-                    throwable.printStackTrace();
+                    Toast.makeText(LoginActivity.this, getString(R.string.LoginActivity_Unable_to_login) + throwable.getClass().getSimpleName(), Toast.LENGTH_LONG).show();
+                Log.e("LoginActivity", "retrofit service failure", throwable);
             }
         });
     }

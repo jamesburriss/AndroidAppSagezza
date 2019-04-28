@@ -6,93 +6,65 @@
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.team15.android.LoginActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
     <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="244dp"
+        android:id="@+id/etRelationship"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Relationship"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:text="User" />
+        tools:layout_editor_absoluteY="100dp" />
 
     <EditText
         android:id="@+id/etFirstName"
-        android:layout_width="244dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="First Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
-        tools:text="First Name" />
+        app:layout_constraintTop_toBottomOf="@+id/etRelationship"/>
 
     <EditText
         android:id="@+id/etLastName"
-        android:layout_width="244dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Last Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFirstName"
-        tools:text="Last Name" />
-
-    <EditText
-        android:id="@+id/etRelationship"
-        android:layout_width="244dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etLastName"
-        tools:text="Relationship" />
+        app:layout_constraintTop_toBottomOf="@+id/etFirstName"/>
 
     <EditText
         android:id="@+id/etAddress"
-        android:layout_width="244dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:hint="Address"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRelationship"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="Address" />
-
-    <!--android:background="@drawable/button_background"-->
-
+        app:layout_constraintTop_toBottomOf="@+id/etLastName"
+        app:layout_constraintVertical_bias="0.0"/>
 </android.support.constraint.ConstraintLayout>

@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;

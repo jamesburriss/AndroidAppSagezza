@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NextofKinsActivity"></activity>
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".DashboardActivity"
