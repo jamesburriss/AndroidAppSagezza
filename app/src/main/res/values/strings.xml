@@ -26,5 +26,16 @@
 
     <string name="toast_update_saved">Saved</string>
     <string name="toast_update_failed">Error when saving changes</string>
+    <string name="UserSearch_Error">Error performing search</string>
+    <string name="DashboardActivity_title">Dashboard</string>
+    <string name="JobSearch_eroor">Error performing search</string>
+    <string name="LoginActivity_error_credentials">Username or password incorrect!</string>
+    <string name="LoginActivity_Unable_to_login">Unable to login:</string>
+    <string name="LoginActivity_token_error">[!] Get token failed!</string>
+    <string name="TutorialActivity_next">Next</string>
+    <string name="TutorialActivity_finish">Finish</string>
+    <string name="TutorialActivity_back">Back</string>
+    <string name="UserProfileActivity_permission">You do not have permission to edit this</string>
+    <string name="UserProfileActivity_valid_value">Please enter a valid value</string>
 
 </resources>

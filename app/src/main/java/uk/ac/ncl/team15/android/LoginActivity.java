@@ -62,14 +62,14 @@ public class LoginActivity extends AppCompatActivity {
                     LoginActivity.this.finish();
                 }
                 else if (response.code() == 400)
-                    Toast.makeText(LoginActivity.this, "Username or password incorrect!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.LoginActivity_error_credentials), Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(LoginActivity.this, "Unable to login: " + response.code(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.LoginActivity_Unable_to_login) + response.code(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                System.out.println("[!] Get token failed!");
+                System.out.println(R.string.LoginActivity_token_error);
                 if (throwable != null)
                     throwable.printStackTrace();
             }

@@ -82,7 +82,7 @@ public class UserProfileActivity extends AppCompatActivity {
         final TextView userRealName = findViewById(R.id.userRealName);
         final ImageView userImg = findViewById(R.id.userImg);
 
-        final ListView userFileList = findViewById(R.id.userFileList);
+        //final ListView userFileList = findViewById(R.id.userFileList);
         final TextView fileResultName = findViewById(R.id.fileResultName);
         final ImageView fileImg = findViewById(R.id.fileImg);
 
@@ -135,13 +135,13 @@ public class UserProfileActivity extends AppCompatActivity {
                 UserAttribute attrib = userAttributes.get(position);
 
                 if (this.modelUser.isReadOnly()) {
-                    Toast.makeText(UserProfileActivity.this, "You do not have permission to edit this", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserProfileActivity.this, getString(R.string.UserProfileActivity_permission), Toast.LENGTH_LONG).show();
                 } else {
                     Map<String, String> options = attrib.getOptions();
 
                     Consumer<String> callback = (val) -> {
                         if (!attrib.isValid(this.modelUser, val)) {
-                            Toast.makeText(UserProfileActivity.this, "Please enter a valid value", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserProfileActivity.this, getString(R.string.UserProfileActivity_valid_value), Toast.LENGTH_LONG).show();
                             return;
                         }
                         ModelUser patchModel = new ModelUser();

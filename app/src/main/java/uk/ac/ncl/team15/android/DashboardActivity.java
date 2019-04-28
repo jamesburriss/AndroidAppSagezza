@@ -26,7 +26,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Dashboard"); // TODO: Move this to xml?
+        toolbar.setTitle(R.string.DashboardActivity_title);
         setSupportActionBar(toolbar);
 
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
@@ -54,8 +54,6 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
