@@ -3,7 +3,6 @@ package uk.ac.ncl.team15.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,12 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
-        toolbar.setTitle("Login");
-
-        setSupportActionBar(toolbar);
 
         username = (EditText)findViewById(R.id.editTextEmail);
         password = (EditText)findViewById(R.id.editTextPassword);
@@ -62,14 +55,14 @@ public class LoginActivity extends AppCompatActivity {
                     LoginActivity.this.finish();
                 }
                 else if (response.code() == 400)
-                    Toast.makeText(LoginActivity.this, "Username or password incorrect!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.LoginActivity_error_credentials), Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(LoginActivity.this, "Unable to login: " + response.code(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.LoginActivity_Unable_to_login) + response.code(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ModelAuth> call, Throwable throwable) {
-                System.out.println("[!] Get token failed!");
+                System.out.println(R.string.LoginActivity_token_error);
                 if (throwable != null)
                     throwable.printStackTrace();
             }

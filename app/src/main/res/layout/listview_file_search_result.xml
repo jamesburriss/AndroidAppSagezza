@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/row_padding"
+    android:paddingBottom="@dimen/row_padding">
+
+    <ImageView
+        android:id="@+id/fileImg"
+        android:layout_width="@dimen/user_img"
+        android:layout_height="@dimen/user_img"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/row_padding"
+        android:layout_marginRight="@dimen/row_padding"
+        android:background="@drawable/file"
+        android:contentDescription="File image" />
+
+    <TextView
+        android:id="@+id/fileResultName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/fileImg"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="18sp"
+        tools:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/fileResultDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/fileImg"
+        android:layout_below="@id/fileResultName"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:background="#EF5C4E"
+        android:text="DELETE"
+        android:textColor="#DDDDDD" />
+
+</RelativeLayout>

@@ -1,8 +1,11 @@
 package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -26,7 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Dashboard"); // TODO: Move this to xml?
+        toolbar.setTitle(R.string.DashboardActivity_title);
         setSupportActionBar(toolbar);
 
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
@@ -43,19 +46,58 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
             startActivity(intent);
         });
-        Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
 
-        tutorialButton.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firststart", true);
+
+
+        if (firstStart){
+
+            Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
+            tutorialButton.setVisibility(View.VISIBLE);
+            tutorialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
+                }
+            });
+           SharedPreferences.Editor editor = prefs.edit();
+           editor.putBoolean("firststart", false);
+           editor.apply();
+        }
+
+
+    BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+
+                    case R.id.navigation_jobs:
+                        Intent intent1 = new Intent(DashboardActivity.this, JobSearchActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                    case  R.id.navigation_employees:
+                        Intent intent2 = new Intent(DashboardActivity.this, UserSearchActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case  R.id.navigation_myprofile:
+                        // UserSearchActivity pulls no data atm, needs data for your own profile
+                        Intent intent3 = new Intent(DashboardActivity.this, UserProfileActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return false;
+
             }
         });
-
-
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -66,8 +108,17 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.help_menu:
+                finish();
+                Intent intent1 = new Intent(DashboardActivity.this, TutorialActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
+                return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

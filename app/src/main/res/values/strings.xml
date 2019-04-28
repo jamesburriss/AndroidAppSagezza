@@ -17,7 +17,7 @@
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_btn">LOGIN</string>
-    <string name="login_forgot_password">Forgot your password</string>
+    <string name="login_forgot_password">Forgot your password?</string>
 
 
     <string name="user_profile_image_desc">User Profile Image</string>
@@ -26,5 +26,44 @@
 
     <string name="toast_update_saved">Saved</string>
     <string name="toast_update_failed">Error when saving changes</string>
+
+    <string name="UserSearch_Error">Error performing search</string>
+
+    <string name="DashboardActivity_title">Dashboard</string>
+
+    <string name="JobSearch_eroor">Error performing search</string>
+    <string name="LoginActivity_error_credentials">Username or password incorrect!</string>
+    <string name="LoginActivity_Unable_to_login">Unable to login:</string>
+    <string name="LoginActivity_token_error">[!] Get token failed!</string>
+
+    <string name="TutorialActivity_next">Next</string>
+    <string name="TutorialActivity_finish">Finish</string>
+    <string name="TutorialActivity_back">Back</string>
+
+    <string name="UserProfileActivity_permission">You do not have permission to edit this</string>
+    <string name="UserProfileActivity_valid_value">Please enter a valid value</string>
+
+    <string name="Activity_Dashboard_search_jobs">Search Jobs</string>
+    <string name="Activity_Dashboard_search_for_an_available_job">Search for an available job</string>
+    <string name="Activity_Dashboard_tutorial">Tutorial</string>
+
+    <string name="Activity_Forgot_Password_forgotten_your_password">Forgotten your password?</string>
+    <string name="Activity_Forgot_Password_please_enter_your_email_address_to_request_a_password_reset">Please enter your email address to request a password reset.</string>
+    <string name="Activity_Forogt_Password_company_email">Company Email</string>
+    <string name="Activity_Forgot_Password_reset_password">RESET PASSWORD</string>
+    <string name="Activity_Forgot_Password_cancel">Cancel</string>
+
+    <string name="Activity_Job_Ad_job_title">Job Title</string>
+    <string name="Activity_Job_Ad_description">Description</string>
+    <string name="Activity_Job_Ad_apply">Apply</string>
+    <string name="Activity_Job_Ad_textview">TextView</string>
+
+    <string name="Activity_Login_guest_login">Guest Login</string>
+
+    <string name="Activity_User_Profile_uploaded_files">Uploaded Files</string>
+
+    <string name="Listview_File_Search_Result_file_image">File image</string>
+    <string name="Listview_Job_Search_Result_job_title">Job title</string>
+    <string name="Listview_Job_Search_Result_location_of_job">Location of job</string>
 
 </resources>

@@ -252,4 +252,8 @@ public class ModelUser
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
     }
+
+    public String getFullNameWithTitle() {
+        return this.getTitle() + ". " + this.getFirstName();
+    }
 }
