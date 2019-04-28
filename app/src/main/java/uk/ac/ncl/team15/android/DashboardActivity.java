@@ -64,6 +64,14 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
+            case R.id.upload_menu:
+                finish();
+
+                final int PICKFILE_REQUEST_CODE = 8778;
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.setType("file/*");
+                startActivityForResult(i, PICKFILE_REQUEST_CODE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

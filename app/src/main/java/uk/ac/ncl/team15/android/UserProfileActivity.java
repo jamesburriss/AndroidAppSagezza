@@ -64,6 +64,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
+            case R.id.upload_menu:
+                //TODO:  store and use data
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
