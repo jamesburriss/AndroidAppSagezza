@@ -85,8 +85,8 @@ public class UserProfileActivity extends AppCompatActivity {
         final TextView fileResultName = findViewById(R.id.fileResultName);
         final ImageView fileImg = findViewById(R.id.fileImg);
 
-        fileImg.setImageResource(R.drawable.file);
-        fileResultName.setText("FILE_NAME");
+//        fileImg.setImageResource(R.drawable.file);
+//        fileResultName.setText("FILE_NAME");
 
 
         final int userId = getIntent().getIntExtra("_userId", -1);
