@@ -1,6 +1,7 @@
 package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -43,14 +44,29 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
             startActivity(intent);
         });
-        Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
 
-        tutorialButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
-            }
-        });
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firststart", true);
+
+
+        if (firstStart){
+
+            Button tutorialButton = (Button) findViewById(R.id.btn_Tut);
+            tutorialButton.setVisibility(View.VISIBLE);
+            tutorialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(DashboardActivity.this, TutorialActivity.class));
+                }
+            });
+           SharedPreferences.Editor editor = prefs.edit();
+           editor.putBoolean("firststart", false);
+           editor.apply();
+        }
+
+
+
+
 
 
     }
@@ -64,8 +80,17 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.help_menu:
+                finish();
+                Intent intent1 = new Intent(DashboardActivity.this, TutorialActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
+                return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

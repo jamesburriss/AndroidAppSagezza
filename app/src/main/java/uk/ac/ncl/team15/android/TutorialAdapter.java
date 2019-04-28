@@ -16,26 +16,26 @@ public class TutorialAdapter extends PagerAdapter {
 
     // Slide images: rename as needed
     public int[] tut_slide_img = {
-            R.drawable.tut_img1,
-            R.drawable.tut_img1,
-            R.drawable.tut_img1,
-            R.drawable.tut_img1
+            R.drawable.man,
+            R.drawable.employee,
+            R.drawable.interview,
+            R.drawable.admin
     };
 
     // Slide titles: rename as needed
     public String[] tut_slide_title = {
-            "TITLE 1",
-            "TITLE 2",
-            "TITLE 3",
-            "TITLE 4"
+            "Your Profile",
+            "Employee Page",
+            "Job Listings",
+            "Admin Functions"
     }   ;
 
     // Slide descriptions: re-write as needed
     public String[] tut_slide_desc = {
-            "Sample description (long desc) 1, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Sample description 2,",
-            "Sample description 3, 1234567890!@#$%^&*()-+=",
-            "Sample description 4, Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+            "On your My Profile page you can view and edit any of your personal or private information. Just simply press and hold on any fields you’d like to change and modify as shown. If your using a guest profile no info is shown.",
+            "The employee page allows you to search through all registered users on the app. As you type the search will start to narrow down to employees with relevant names. You can the view the profiles of any employees you have searched.",
+            "Like the employee page the job listings page allows you to search any job listings currently posted by Saggezza.",
+            "Administrators have extra functions compared to other users. They can view and edit all user’s information to ensure all the information is correct. They will also have out of app permissions to manipulate the database."
     };
 
     // Slide background colours
