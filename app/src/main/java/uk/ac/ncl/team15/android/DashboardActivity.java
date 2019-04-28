@@ -28,6 +28,14 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        if (SaggezzaApplication.getInstance().getUserAuthData() == null) {
+            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.DashboardActivity_title);
         setSupportActionBar(toolbar);

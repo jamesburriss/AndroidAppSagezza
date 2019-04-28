@@ -31,8 +31,8 @@ public class JobSearchActivity extends AppCompatActivity {
         lv = findViewById(R.id.jobResultList);
 
         lv.setOnItemClickListener((adapter, v, position, id) -> {
-            HashMap<String, Object> li = (HashMap<String, Object>) lv.getItemAtPosition(position);
-            int selectedJobId = (int) li.get("_jobId");
+            ModelJob mj = (ModelJob) lv.getItemAtPosition(position);
+            int selectedJobId = mj.getId();
 
             Intent profileIntent = new Intent(JobSearchActivity.this, JobAdActivity.class);
             profileIntent.putExtra("_jobId", selectedJobId);
