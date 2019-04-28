@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView forgotPassword;
+    private Button guestLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +33,20 @@ public class LoginActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        username = findViewById(R.id.editTextEmail);
-        password = findViewById(R.id.editTextPassword);
-        login = findViewById(R.id.btnLogin);
+        username = (EditText)findViewById(R.id.editTextEmail);
+        password = (EditText)findViewById(R.id.editTextPassword);
+        login = (Button)findViewById(R.id.btnLogin);
         forgotPassword = findViewById(R.id.textView10);
+        guestLogin = (Button) findViewById(R.id.btnGuest);
 
         login.setOnClickListener(view -> validate(username.getText().toString(), password.getText().toString()));
 
-//        guestLogin.setOnClickListener(view -> {
-//            SaggezzaApplication.getInstance().loginAsGuest();
-//            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-//            startActivity(intent);
-//            LoginActivity.this.finish();
-//        });
+        guestLogin.setOnClickListener(view -> {
+            SaggezzaApplication.getInstance().loginAsGuest();
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+            startActivity(intent);
+            LoginActivity.this.finish();
+        });
     }
 
     private void validate(String userName, String userPassword) {
