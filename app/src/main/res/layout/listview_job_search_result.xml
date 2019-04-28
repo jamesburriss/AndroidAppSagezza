@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Job title"
+        android:text="@string/Listview_Job_Search_Result_job_title"
         tools:textColor="@android:color/black" />
 
     <TextView
@@ -24,9 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_below="@id/userResultName"
-        android:text="Location of job"
+        android:text="@string/Listview_Job_Search_Result_location_of_job"
         android:layout_toEndOf="@id/userImg"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

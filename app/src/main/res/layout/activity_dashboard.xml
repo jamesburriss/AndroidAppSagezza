@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Search Jobs"
+                    android:text="@string/Activity_Dashboard_search_jobs"
                     android:textStyle="bold" />
 
                 <View
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Search for an available job"
+                    android:text="@string/Activity_Dashboard_search_for_an_available_job"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -153,7 +153,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Tutorial"
+        android:text="@string/Activity_Dashboard_tutorial"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
