@@ -6,6 +6,7 @@ import retrofit2.http.*;
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
+import uk.ac.ncl.team15.android.retrofit.models.ModelNextOfKin;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUsers;
 
@@ -31,6 +32,15 @@ public interface SaggezzaService
 
     @PATCH("users/{id}")
     Call<ResponseBody> patchUser(@Path("id") int id, @Body ModelUser modelUser);
+
+    /*
+     * /nextOfKin
+     */
+    @GET("nextOfKin/{id}")
+    Call<ModelNextOfKin> nextOfKin(@Path("id") int id);
+
+    @PATCH("nextOfKin/{id}")
+    Call<ResponseBody> nextOfKin(@Path("id") int id, @Body ModelNextOfKin modelNextOfKin);
 
     /*
      * /jobs
