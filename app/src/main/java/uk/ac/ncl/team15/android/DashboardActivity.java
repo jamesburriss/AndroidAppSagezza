@@ -2,8 +2,10 @@ package uk.ac.ncl.team15.android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -64,8 +66,36 @@ public class DashboardActivity extends AppCompatActivity {
            editor.apply();
         }
 
+    BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
 
+                    case R.id.navigation_jobs:
+                        Intent intent1 = new Intent(DashboardActivity.this, JobSearchActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                    case  R.id.navigation_employees:
+                        Intent intent2 = new Intent(DashboardActivity.this, UserSearchActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case  R.id.navigation_myprofile:
+                        // UserSearchActivity pulls no data atm, needs data for your own profile
+                        Intent intent3 = new Intent(DashboardActivity.this, UserProfileActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return false;
+
+            }
+        });
 
 
 
