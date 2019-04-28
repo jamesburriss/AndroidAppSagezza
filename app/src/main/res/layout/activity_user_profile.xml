@@ -81,7 +81,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:textStyle="bold"
-            android:text="Uploaded Files"
+            android:text="@string/Activity_User_Profile_uploaded_files"
             />
 
         <ListView

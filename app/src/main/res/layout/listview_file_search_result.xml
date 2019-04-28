@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/row_padding"
         android:layout_marginRight="@dimen/row_padding"
-        android:contentDescription="File image" />
+        android:contentDescription="@string/Listview_File_Search_Result_file_image" />
 
     <TextView
         android:id="@+id/fileResultName"
