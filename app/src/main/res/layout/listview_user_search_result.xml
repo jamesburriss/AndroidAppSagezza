@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/row_padding"
     android:paddingBottom="@dimen/row_padding">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImg"
         android:layout_width="@dimen/user_img"
         android:layout_height="@dimen/user_img"
