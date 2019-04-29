@@ -2,6 +2,7 @@ package uk.ac.ncl.team15.android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -26,6 +27,9 @@ public class JobAdActivity extends AppCompatActivity {
 
         final int jobId = getIntent().getIntExtra("_jobId", -1);
         assert(jobId != -1);
+
+        TextView textView = (TextView) findViewById(R.id.DescriptionBox);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         // lambda consumer is called after the service request is complete
         SaggezzaApplication.getInstance().getJobDataById(jobId, (jobData) -> {
