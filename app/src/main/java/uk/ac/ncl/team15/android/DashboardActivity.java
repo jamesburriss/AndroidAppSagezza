@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -45,17 +45,25 @@ public class DashboardActivity extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
         welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getInstance().getUserAuthData().getFirstName()));
 
-        CardView userSearchCard = findViewById(R.id.userSearchCard);
-        userSearchCard.setOnClickListener((view) -> {
-            Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
-            startActivity(intent);
-        });
+        // Guest account has null as the position
+        TextView jobPosText = findViewById(R.id.dashboardPosition);
+        jobPosText.setText(String.format(getString(R.string.dashboard_position), SaggezzaApplication.getInstance().getUserAuthData().getPosition()));
 
-        CardView jobSearchCard = findViewById(R.id.jobSearchCard);
-        jobSearchCard.setOnClickListener((view) -> {
-            Intent intent = new Intent(DashboardActivity.this, JobSearchActivity.class);
-            startActivity(intent);
-        });
+        // Need to pull user image
+        ImageView userImg = findViewById(R.id.userImg);
+        userImg.setImageResource(R.drawable.user);
+
+         Button teamBtn = (Button) findViewById(R.id.btn_team);
+         teamBtn.setOnClickListener((view) -> {
+         Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class); //replace to team activity
+         startActivity(intent);
+         });
+
+         Button tutorialBtn = (Button) findViewById(R.id.btn_tutorial);
+         tutorialBtn.setOnClickListener((view) -> {
+         Intent intent = new Intent(DashboardActivity.this, TutorialActivity.class);
+         startActivity(intent);
+         });
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firststart", true);

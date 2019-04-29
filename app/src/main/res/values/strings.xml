@@ -12,6 +12,7 @@
     <string name="title_activity_tutorial">Tutorial</string>
 
     <string name="dashboard_welcome">Welcome %s</string>
+    <string name="dashboard_position">%s</string>
 
     <string name="login_title">Sign In</string>
     <string name="login_email_hint">Email</string>
