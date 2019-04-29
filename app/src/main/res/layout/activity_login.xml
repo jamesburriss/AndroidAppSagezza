@@ -86,7 +86,7 @@
     <Button
         android:id="@+id/btnGuest"
         android:layout_width="234dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
