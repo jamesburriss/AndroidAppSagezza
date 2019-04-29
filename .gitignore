@@ -13,11 +13,3 @@
 .externalNativeBuild
 .idea/vcs.xml
 .idea/render.experimental.xml
-app/src/main/java/uk/ac/ncl/team15/android/DashboardActivity.java
-app/src/main/res/drawable/log_out.xml
-app/src/main/java/uk/ac/ncl/team15/android/DashboardActivity.java
-app/src/main/res/menu/bottom_nav_menu.xml
-app/src/main/res/layout/activity_dashboard.xml
-app/src/main/res/layout/activity_dashboard.xml
-app/src/main/res/layout/activity_job_ad.xml
-app/src/main/res/menu/bottom_nav_menu.xml
