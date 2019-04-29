@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -207,7 +206,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
                             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                                    .setEnabled(s.length() != 0);
+                                    .setEnabled(!s.toString().trim().isEmpty());
                         }
 
                         @Override

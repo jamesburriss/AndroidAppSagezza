@@ -10,10 +10,14 @@ import retrofit2.Response;
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
-import uk.ac.ncl.team15.android.util.BitmapCache;
 import uk.ac.ncl.team15.android.util.ValueContainer;
 
+import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.function.Consumer;
 
 import okhttp3.Interceptor;
@@ -26,6 +30,7 @@ public class SaggezzaApplication extends Application
 {
     private static SaggezzaApplication instance;
 
+    private boolean initComplete = false;
     private ValueContainer<String> userAuthToken = new ValueContainer<>();
     private ValueContainer<ModelUser> userAuthData = new ValueContainer<>();
     private SaggezzaService retrofitService;
@@ -67,6 +72,43 @@ public class SaggezzaApplication extends Application
                 .client(client)
                 .build();
         this.retrofitService = retrofit.create(SaggezzaService.class);
+
+        File appFileDir = getFilesDir();
+        File authTokenFile = new File(appFileDir, ".token");
+        if (authTokenFile.exists()) {
+            Log.v("SaggezzaApplication", "authTokenFile exists, attempting to read token");
+            byte[] tokenData = new byte[(int) authTokenFile.length()];
+            try (InputStream is = openFileInput(".token")) {
+                DataInputStream dis = new DataInputStream(is);
+                dis.readFully(tokenData);
+            } catch (IOException ioe) {
+                Log.e("SaggezzaApplication", "error reading token file", ioe);
+            }
+            String token = new String(tokenData, Charset.forName("UTF-8"));
+            userAuthToken.set(token);
+            Call<ModelUser> callMu = retrofitService.self();
+            callMu.enqueue(new Callback<ModelUser>() {
+                @Override
+                public void onResponse(Call<ModelUser> call, Response<ModelUser> response) {
+                    if (response.code() == 200) {
+                        SaggezzaApplication.getInstance().setUserAuthData(response.body());
+                        Log.v("SaggezzaApplication", "successfully authenticated using fs token");
+                    }
+                    else { // stored token was probably bad, delete it and require the user to relog
+                        setUserAuthToken(null);
+                    }
+                    initComplete = true;
+                }
+
+                @Override
+                public void onFailure(Call<ModelUser> call, Throwable throwable) {
+                    Log.e("SaggezzaApplication", "retrofit service failure", throwable);
+                    initComplete = true;
+                }
+            });
+        } else {
+            initComplete = true;
+        }
     }
 
     public void loginAsGuest() {
@@ -115,6 +157,26 @@ public class SaggezzaApplication extends Application
         });
     }
 
+    private void writeAuthTokenToFs(String token) {
+        try {
+            File appFileDir = getFilesDir();
+            File authTokenFile = new File(appFileDir, ".token");
+            if (authTokenFile.exists())
+                authTokenFile.delete();
+            if (token == null)
+                return;
+            try (OutputStream os = openFileOutput(".token", MODE_PRIVATE)) {
+                os.write(token.getBytes(Charset.forName("UTF-8")));
+            }
+        } catch (IOException ioe) {
+            Log.e("SaggezzaApplication", "error writing auth token to fs", ioe);
+        }
+    }
+
+    public boolean hasInit() {
+        return initComplete;
+    }
+
     public SaggezzaService getRetrofitService()
     {
         return retrofitService;
@@ -126,6 +188,7 @@ public class SaggezzaApplication extends Application
 
     public void setUserAuthToken(String token) {
         userAuthToken.set(token);
+        writeAuthTokenToFs(token);
     }
 
     public ModelUser getUserAuthData() {

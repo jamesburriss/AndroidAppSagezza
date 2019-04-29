@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.VideoView;
 
@@ -33,8 +34,24 @@ public class SplashActivity extends AppCompatActivity {
             if(isFinishing())
                 return;
 
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            finish();
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        while (!SaggezzaApplication.getInstance().hasInit()) {
+                            Thread.sleep(100);
+                        }
+                    } catch (InterruptedException ie) {
+                        Log.e("SplashActivity", "interrupted while waiting for app init", ie);
+                    }
+
+                    Class<?> activityTarget =
+                            SaggezzaApplication.getInstance().getUserAuthData() == null ?
+                                    LoginActivity.class : DashboardActivity.class;
+                    startActivity(new Intent(SplashActivity.this, activityTarget));
+                    finish();
+                }
+            }.start();
         });
         videoView.start();
     }

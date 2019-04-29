@@ -57,6 +57,7 @@
     <string name="Activity_Job_Ad_description">Description</string>
     <string name="Activity_Job_Ad_apply">Apply</string>
     <string name="Activity_Job_Ad_textview">TextView</string>
+    <string name="Activity_Job_Ad_currency_fmt">£%.2f</string>
 
     <string name="Activity_Login_guest_login">Guest Login</string>
 

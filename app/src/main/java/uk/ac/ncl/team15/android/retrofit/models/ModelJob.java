@@ -20,6 +20,10 @@ public class ModelJob {
     @Expose
     private String hours;
 
+    @SerializedName("salary")
+    @Expose
+    private Double salary;
+
     @SerializedName("skill_level")
     @Expose
     private String skillLevel;
@@ -27,6 +31,10 @@ public class ModelJob {
     @SerializedName("description")
     @Expose
     private String description;
+
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
     public Integer getId() {
         return id;
@@ -60,6 +68,14 @@ public class ModelJob {
         this.hours = hours;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
     public String getSkillLevel() {
         return skillLevel;
     }
@@ -74,5 +90,13 @@ public class ModelJob {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
