@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
+
+    //Do we still want this?
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -109,6 +111,15 @@ public class DashboardActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(DashboardActivity.this, UserProfileActivity.class);
                         intent3.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
                         startActivity(intent3);
+                        break;
+
+                    case  R.id.navigation_logout:
+                        SaggezzaApplication.getInstance().setUserAuthData(null);
+                        SaggezzaApplication.getInstance().setUserAuthToken(null);
+                        finish();
+                        Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
+                        intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent4);
                         break;
                 }
                 return false;
