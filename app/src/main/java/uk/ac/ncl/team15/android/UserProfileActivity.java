@@ -91,7 +91,7 @@ public class UserProfileActivity extends AppCompatActivity {
             this.modelUser = userData;
 
             new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(userData));
-            userRealName.setText(userData.getFirstName() + " " + userData.getLastName());
+            userRealName.setText(userData.getFullNameWithTitle());
 
             listData = new ArrayList<>();
             listData.addAll(buildAttribs(userData));

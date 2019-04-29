@@ -47,18 +47,15 @@ public class SaggezzaApplication extends Application
         SaggezzaApplication.instance = this;
 
         // Intercept HTTP requests to add the 'Authorization' header
-        Interceptor interceptor = new Interceptor() { // Leave as anon-inner class for java compatibility <1.8
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                if (userAuthToken.get() != null)
-                {
-                    //System.out.println("[#] Interceptor: Injecting header with token=" + token.get());
-                    Request newRequest = chain.request().newBuilder().addHeader("Authorization", "Token " + userAuthToken.get()).build();
-                    return chain.proceed(newRequest);
-                }
-                else
-                    return chain.proceed(chain.request());
+        Interceptor interceptor = chain -> {
+            if (userAuthToken.get() != null)
+            {
+                //System.out.println("[#] Interceptor: Injecting header with token=" + token.get());
+                Request newRequest = chain.request().newBuilder().addHeader("Authorization", "Token " + userAuthToken.get()).build();
+                return chain.proceed(newRequest);
             }
+            else
+                return chain.proceed(chain.request());
         };
 
         // Make custom OkHttpClient instance which uses our interceptor

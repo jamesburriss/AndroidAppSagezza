@@ -254,6 +254,6 @@ public class ModelUser
     }
 
     public String getFullNameWithTitle() {
-        return this.getTitle() + ". " + this.getFirstName();
+        return this.getTitle() + ". " + this.getFullName();
     }
 }
