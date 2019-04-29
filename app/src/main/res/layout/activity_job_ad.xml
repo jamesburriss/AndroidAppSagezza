@@ -182,13 +182,14 @@
                 <TextView
                     android:id="@+id/DescriptionBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="80dp"
                     android:layout_below="@id/jobDescriptionTitle"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
                     android:layout_marginBottom="10dp"
+                    android:scrollbars="vertical"
                     android:text="something something job does this and that"
                     android:textSize="15sp" />
             </RelativeLayout>

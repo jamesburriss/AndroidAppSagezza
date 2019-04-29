@@ -2,6 +2,7 @@ package uk.ac.ncl.team15.android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -23,6 +24,9 @@ public class JobAdActivity extends AppCompatActivity {
         final TextView jobHoursTv = findViewById(R.id.jobHours);
         final TextView jobSkillTv = findViewById(R.id.jobSkill);
         final TextView jobUpdateTv = findViewById(R.id.jobUpdate); //For the date
+
+        TextView textView = (TextView) findViewById(R.id.DescriptionBox);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         final int jobId = getIntent().getIntExtra("_jobId", -1);
         assert(jobId != -1);
