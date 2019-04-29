@@ -10,11 +10,11 @@ public class ModelFile {
 
     @SerializedName("size")
     @Expose
-    private Integer size;
+    private Long size;
 
     @SerializedName("last_modified")
     @Expose
-    private Double lastModified;
+    private String lastModified;
 
     public String getFilename() {
         return filename;
@@ -24,19 +24,15 @@ public class ModelFile {
         this.filename = filename;
     }
 
-    public Integer getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
-    public Double getLastModified() {
+    public String getLastModified() {
         return lastModified;
-    }
-
-    public void setLastModified(Double lastModified) {
-        this.lastModified = lastModified;
     }
 }

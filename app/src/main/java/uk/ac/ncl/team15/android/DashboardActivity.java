@@ -98,8 +98,8 @@ public class DashboardActivity extends AppCompatActivity {
                         break;
 
                     case  R.id.navigation_myprofile:
-                        // UserSearchActivity pulls no data atm, needs data for your own profile
                         Intent intent3 = new Intent(DashboardActivity.this, UserProfileActivity.class);
+                        intent3.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
                         startActivity(intent3);
                         break;
                 }

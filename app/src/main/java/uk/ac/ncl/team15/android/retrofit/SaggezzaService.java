@@ -4,6 +4,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 import uk.ac.ncl.team15.android.retrofit.models.ModelAuth;
+import uk.ac.ncl.team15.android.retrofit.models.ModelFiles;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJobs;
 import uk.ac.ncl.team15.android.retrofit.models.ModelNextOfKin;
@@ -35,6 +36,9 @@ public interface SaggezzaService
 
     @PATCH("users/{id}")
     Call<ResponseBody> patchUser(@Path("id") int id, @Body ModelUser modelUser);
+
+    @GET("users/{id}/files")
+    Call<ModelFiles> files(@Path("id") int id);
 
     /*
      * /nextOfKin

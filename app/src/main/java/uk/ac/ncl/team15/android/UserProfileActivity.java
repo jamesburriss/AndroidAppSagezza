@@ -29,11 +29,15 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.ac.ncl.team15.android.adapter.FileListAdapter;
 import uk.ac.ncl.team15.android.adapter.UserProfileAdapter;
+import uk.ac.ncl.team15.android.retrofit.models.ModelFile;
+import uk.ac.ncl.team15.android.retrofit.models.ModelFiles;
 import uk.ac.ncl.team15.android.retrofit.models.ModelNextOfKin;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.DialogHelper;
 import uk.ac.ncl.team15.android.util.DownloadImageTask;
+import uk.ac.ncl.team15.android.util.DummyAttribute;
 import uk.ac.ncl.team15.android.util.StaticAttributeMap;
 import uk.ac.ncl.team15.android.util.UserAttributeValidators;
 
@@ -45,6 +49,13 @@ public class UserProfileActivity extends AppCompatActivity {
         new StaticAttributeMap<String, String>()
             .map("M", "Male")
             .map("F", "Female");
+
+    private static StaticAttributeMap<String, String> MAP_MARITAL_STATUS =
+        new StaticAttributeMap<String, String>()
+            .map("S", "Single")
+            .map("M", "Married")
+            .map("W", "Widowed")
+            .map("D", "Separated");
 
     private List<Object> listData;
     private ModelUser modelUser = null;
@@ -97,6 +108,8 @@ public class UserProfileActivity extends AppCompatActivity {
             listData.addAll(buildAttribs(userData));
             if (userData.getNextOfKins() != null)
                 listData.addAll(userData.getNextOfKins());
+            if (userData.getVisibility() >= Constants.VISIBILITY_ADMIN)
+                listData.add(new DummyAttribute("Files", "Click to view", "files"));
             ListAdapter adapter = new UserProfileAdapter(UserProfileActivity.this, listData);
             userAttribList.setAdapter(adapter);
         });
@@ -153,14 +166,14 @@ public class UserProfileActivity extends AppCompatActivity {
                                     "Cancel", (val) -> callback.accept(options.get(val)));
                         }
                     }
-                } if (listObject instanceof ModelNextOfKin) {
+                } else if (listObject instanceof ModelNextOfKin) {
                     ModelNextOfKin modelNok = (ModelNextOfKin) listObject;
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
                     builder.setTitle("Modify Details");
 
                     LayoutInflater inflater = this.getLayoutInflater();
-                    View view = inflater.inflate(R.layout.activity_nextof_kins, null);
+                    View view = inflater.inflate(R.layout.layout_nextof_kins, null);
                     final EditText etRelationship = view.findViewById(R.id.etRelationship);
                     final EditText etFirstName = view.findViewById(R.id.etFirstName);
                     final EditText etLastName = view.findViewById(R.id.etLastName);
@@ -218,11 +231,46 @@ public class UserProfileActivity extends AppCompatActivity {
                     etAddress.addTextChangedListener(twNotEmpty);
 
                     alertDialog.show();
+                } else if (listObject instanceof DummyAttribute) {
+                    DummyAttribute attrib = (DummyAttribute) listObject;
+                    if (attrib.getTag().equals("files")) {
+                        Call<ModelFiles> callFiles =
+                                SaggezzaApplication.getInstance().getRetrofitService().files(this.modelUser.getId());
+                        callFiles.enqueue(new Callback<ModelFiles>() {
+                            @Override
+                            public void onResponse(Call<ModelFiles> call, Response<ModelFiles> response) {
+                                if (response.code() == 200)
+                                    displayFiles(response.body().getFiles());
+                                else
+                                    Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ModelFiles> call, Throwable throwable) {
+                                Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
+                                if (throwable != null)
+                                    Log.e("RETROFIT","files(" +
+                                            UserProfileActivity.this.modelUser.getId() + ")", throwable);
+                            }
+                        });
+                    }
                 }
             }
         });
     }
 
+    private void displayFiles(List<ModelFile> files) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
+        builder.setTitle("Files");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        ListView listView = new ListView(this);
+        listView.setAdapter(new FileListAdapter(this, files));
+        builder.setView(listView);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     private static List<UserAttribute> buildAttribs(ModelUser modelUser) {
         List<UserAttribute> attribs = new ArrayList<>();
@@ -235,58 +283,67 @@ public class UserProfileActivity extends AppCompatActivity {
         attribs.add(
                 new UserAttribute(
                         "Phone Number", modelUser.getPhoneNumber(),
-                        (mu, val) -> mu.setPhoneNumber(val))
-        );
+                        (mu, val) -> mu.setPhoneNumber(val)
+                ).setValidator(UserAttributeValidators.PHONE_NUM));
 
         if (modelUser.getVisibility() == Constants.VISIBILITY_PUBLIC) {
             attribs.add(
                     new UserAttribute(
-                            "Birthday", modelUser.getDob(), // TODO: Process this value correctly
-                            (mu, val) -> mu.setDob(val)));
+                            "Birthday", modelUser.getDob(),
+                            (mu, val) -> mu.setDob(val)
+                    ).setValidator(UserAttributeValidators.DOB));
         }
 
         if (modelUser.getVisibility() >= Constants.VISIBILITY_PRIVATE) {
             attribs.add(
                     new UserAttribute(
                             "Address", modelUser.getAddress(),
-                            (mu, val) -> mu.setAddress(val)));
+                            (mu, val) -> mu.setAddress(val)
+                    ).setValidator(UserAttributeValidators.NOT_EMPTY));
             attribs.add(
                     new UserAttribute(
                             "Company Email", modelUser.getEmail(),
-                            (mu, val) -> mu.setEmail(val)));
+                            (mu, val) -> mu.setEmail(val)
+                    ).setValidator(UserAttributeValidators.EMAIL));
             attribs.add(
                     new UserAttribute(
                             "Personal Email", modelUser.getPersonalEmail(),
-                            (mu, val) -> mu.setPersonalEmail(val)));
+                            (mu, val) -> mu.setPersonalEmail(val)
+                    ).setValidator(UserAttributeValidators.EMAIL));
             attribs.add(
                     new UserAttribute(
                             "DOB", modelUser.getDob(), // TODO: Process this value correctly
                             (mu, val) -> mu.setDob(val))
-                            .setValidator(UserAttributeValidators.matchesRegex("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")));
+                            .setValidator(UserAttributeValidators.DOB));
             // TODO: Next of kin
         }
 
         if (modelUser.getVisibility() >= Constants.VISIBILITY_ADMIN) {
             attribs.add(
                     new UserAttribute(
-                            "Marital Status", modelUser.getMaritalStatus(),
-                            (mu, val) -> mu.setMaritalStatus(val)));
+                            "Marital Status", MAP_MARITAL_STATUS.readable(modelUser.getMaritalStatus()),
+                            (mu, val) -> mu.setMaritalStatus(val)
+                    ).setOptions(MAP_MARITAL_STATUS.getMapToSymbol()));
             attribs.add(
                     new UserAttribute(
                             "Nationality", modelUser.getNationality(),
-                            (mu, val) -> mu.setNationality(val)));
+                            (mu, val) -> mu.setNationality(val)
+                    ).setValidator(UserAttributeValidators.NOT_EMPTY));
             attribs.add(
                     new UserAttribute(
                             "Visa Status", modelUser.getVisaStatus(),
-                            (mu, val) -> mu.setVisaStatus(val)));
+                            (mu, val) -> mu.setVisaStatus(val)
+                    ).setValidator(UserAttributeValidators.NOT_EMPTY));
             attribs.add(
                     new UserAttribute(
                             "Medical Conditions", modelUser.getMedicalConditions(),
-                            (mu, val) -> mu.setMedicalConditions(val)));
+                            (mu, val) -> mu.setMedicalConditions(val)
+                    ).setValidator(UserAttributeValidators.NOT_EMPTY));
             attribs.add(
                     new UserAttribute(
                             "Languages Spoken", modelUser.getLanguagesSpoken(),
-                            (mu, val) -> mu.setLanguagesSpoken(val)));
+                            (mu, val) -> mu.setLanguagesSpoken(val)
+                    ).setValidator(UserAttributeValidators.NOT_EMPTY));
             attribs.add(
                     new UserAttribute(
                             "Gender", MAP_GENDER.readable(modelUser.getGender()),
