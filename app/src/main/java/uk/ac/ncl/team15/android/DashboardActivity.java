@@ -1,8 +1,10 @@
 package uk.ac.ncl.team15.android;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -114,12 +116,28 @@ public class DashboardActivity extends AppCompatActivity {
                         break;
 
                     case  R.id.navigation_logout:
-                        SaggezzaApplication.getInstance().setUserAuthData(null);
-                        SaggezzaApplication.getInstance().setUserAuthToken(null);
-                        finish();
-                        Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
-                        intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent4);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+                        builder.setMessage("Are you sure you want to logout?");
+                        builder.setCancelable(true);
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SaggezzaApplication.getInstance().setUserAuthData(null);
+                                SaggezzaApplication.getInstance().setUserAuthToken(null);
+                                finish();
+                                Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
+                                intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent4);
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
                         break;
                 }
                 return false;
