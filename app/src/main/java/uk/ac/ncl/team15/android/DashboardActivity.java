@@ -69,6 +69,12 @@ public class DashboardActivity extends AppCompatActivity {
 
         Button teamBtn = (Button) findViewById(R.id.btn_team);
         teamBtn.setOnClickListener((view) -> {
+            Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
+            startActivity(intent);
+        });
+
+        Button webBtn = (Button) findViewById(R.id.btn_web);
+        webBtn.setOnClickListener((view) -> {
             Intent website = new Intent(android.content.Intent.ACTION_VIEW);
             website.setData(Uri.parse("http://google.com"));
             startActivity(website);

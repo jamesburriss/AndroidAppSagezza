@@ -77,7 +77,7 @@
             android:layout_below="@id/dashboardPosition">
 
             <Button
-                android:id="@+id/btn_myteam"
+                android:id="@+id/btn_team"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:background="@color/saggezza_blue"
@@ -113,7 +113,7 @@
             android:layout_below="@id/rel_3">
 
             <Button
-                android:id="@+id/btn_team"
+                android:id="@+id/btn_web"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
