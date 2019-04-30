@@ -73,13 +73,6 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button webBtn = (Button) findViewById(R.id.btn_web);
-        webBtn.setOnClickListener((view) -> {
-            Intent website = new Intent(android.content.Intent.ACTION_VIEW);
-            website.setData(Uri.parse("http://google.com"));
-            startActivity(website);
-        });
-
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firststart", true);
 

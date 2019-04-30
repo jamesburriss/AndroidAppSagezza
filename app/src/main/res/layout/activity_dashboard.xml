@@ -73,7 +73,7 @@
             android:id="@+id/rel_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_below="@id/dashboardPosition">
 
             <Button
@@ -90,7 +90,7 @@
         <RelativeLayout
             android:id="@+id/rel_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_below="@id/rel_2">
 
@@ -103,23 +103,6 @@
                 android:layout_centerHorizontal="true"
                 android:text="Tutorial" />
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rel_4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/rel_3">
-
-            <Button
-                android:id="@+id/btn_web"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:background="@color/saggezza_blue"
-                android:textColor="@color/white"
-                android:text="Website" />
         </RelativeLayout>
 
         <Button
