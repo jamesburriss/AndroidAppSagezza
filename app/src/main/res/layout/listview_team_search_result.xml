@@ -1,5 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,31 +6,28 @@
     android:paddingTop="@dimen/row_padding"
     android:paddingBottom="@dimen/row_padding">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userImg"
-        android:layout_width="@dimen/user_img"
-        android:layout_height="@dimen/user_img"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/row_padding"
-        android:layout_marginRight="@dimen/row_padding"
-        android:contentDescription="@string/user_profile_image_desc" />
-
     <TextView
-        android:id="@+id/userResultName"
+        android:id="@+id/teamResultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_toEndOf="@id/userImg"
+        android:text="Team Title"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="18sp"
+        android:textStyle="bold"
         tools:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/userResultPosition"
+        android:id="@+id/teamResultLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/userImg"
         android:layout_below="@id/userResultName"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@id/userImg"
+        android:text="Leader Name"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
-</RelativeLayout>
+</LinearLayout>

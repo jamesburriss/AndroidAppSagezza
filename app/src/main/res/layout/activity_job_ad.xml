@@ -64,7 +64,6 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
-                    android:text="Location here"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -95,7 +94,6 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
-                    android:text="$ 59242"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -126,7 +124,6 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
-                    android:text="40"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -157,7 +154,6 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
-                    android:text="Beginner"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -182,15 +178,15 @@
                 <TextView
                     android:id="@+id/DescriptionBox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="250dp"
                     android:layout_below="@id/jobDescriptionTitle"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="40dp"
                     android:layout_marginBottom="10dp"
-                    android:text="something something job does this and that"
                     android:textSize="15sp" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -217,7 +213,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_toRightOf="@+id/jobUpdateTitle"
-                    android:text="04/02/2000"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -228,11 +223,12 @@
                 android:layout_below="@id/job_update">
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="50dp"
                     android:background="@android:color/holo_blue_dark"
+                    android:textColor="@color/white"
                     android:text="Apply" />
             </RelativeLayout>
         </RelativeLayout>

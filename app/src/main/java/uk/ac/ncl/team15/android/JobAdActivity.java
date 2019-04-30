@@ -34,6 +34,7 @@ public class JobAdActivity extends AppCompatActivity {
             jobLocationTv.setText(jobData.getLocation());
             jobSalaryTv.setText(String.format(getString(R.string.Activity_Job_Ad_currency_fmt), jobData.getSalary()));
             jobHoursTv.setText(jobData.getHours());
+            jobSkillTv.setText(jobData.getSkillLevel());
 
             try {
                 String formattedDt = Util.convertISO8601To(jobData.getUpdatedAt(), "UTC", "dd-MM-yyyy HH:mm");
