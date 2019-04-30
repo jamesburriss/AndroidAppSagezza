@@ -77,20 +77,20 @@
             android:layout_below="@id/dashboardPosition">
 
             <Button
-                android:id="@+id/btn_team"
+                android:id="@+id/btn_myteam"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:background="@color/saggezza_blue"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
-                android:text="Teams" />
+                android:text="VIEW MY TEAM" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rel_3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_below="@id/rel_2">
 
@@ -98,10 +98,28 @@
                 android:id="@+id/btn_tutorial"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:background="@color/saggezza_blue"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:text="Tutorial" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/rel_3">
+
+            <Button
+                android:id="@+id/btn_team"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/saggezza_blue"
                 android:textColor="@color/white"
-                android:text="Tutorial" />
+                android:text="Website" />
         </RelativeLayout>
 
         <Button

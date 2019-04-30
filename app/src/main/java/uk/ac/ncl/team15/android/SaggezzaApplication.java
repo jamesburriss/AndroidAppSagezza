@@ -113,6 +113,7 @@ public class SaggezzaApplication extends Application
 
         ModelUser dummyUserData = new ModelUser();
         dummyUserData.setFirstName("Guest");
+        dummyUserData.setPosition(" ");
         setUserAuthData(dummyUserData);
     }
 

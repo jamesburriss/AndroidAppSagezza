@@ -12,13 +12,14 @@
         android:title="Employees"/>
 
     <item
+        android:id="@+id/navigation_team"
+        android:icon="@drawable/team"
+        android:title="Teams" />
+
+    <item
         android:id="@+id/navigation_myprofile"
         android:icon="@drawable/user_menu"
         android:title="My Profile" />
 
-    <item
-        android:id="@+id/navigation_logout"
-        android:icon="@drawable/log_out"
-        android:title="Logout" />
 
 </menu>
