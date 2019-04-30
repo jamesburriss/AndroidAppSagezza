@@ -60,8 +60,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userTab">
 
+        android:layout_below="@+id/userTab">
         <ListView
             android:id="@+id/userAttributesList"
             android:layout_width="match_parent"
@@ -100,6 +100,16 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="65dp"
+            android:layout_height="57dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="387dp"
+            android:layout_marginEnd="19dp"
+            app:srcCompat="@drawable/edit_button" />
 
     </RelativeLayout>
 
