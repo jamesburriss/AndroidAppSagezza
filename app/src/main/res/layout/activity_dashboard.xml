@@ -16,15 +16,13 @@
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
         android:layout_alignBottom="@+id/rel_1"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPrimary"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"/>
+
 
     <RelativeLayout
         android:id="@+id/rel_1"
