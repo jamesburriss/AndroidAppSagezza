@@ -112,8 +112,13 @@ public class SaggezzaApplication extends Application
         setUserAuthToken(null);
 
         ModelUser dummyUserData = new ModelUser();
+        dummyUserData.setId(-1);
         dummyUserData.setFirstName("Guest");
         setUserAuthData(dummyUserData);
+    }
+
+    public boolean loggedInAsGuest() {
+        return getUserAuthData() == null || getUserAuthData().getId() == -1;
     }
 
     public void getUserDataById(int userId, Consumer<ModelUser> callback) {
