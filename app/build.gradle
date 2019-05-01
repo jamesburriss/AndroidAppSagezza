@@ -31,11 +31,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "SERVER_PROTO", getServerProto()
-        buildConfigField "String", "SERVER_HOST", getServerHost()
-        buildConfigField("int", "SERVER_PORT", getServerPort())
+        buildConfigField "String", "DEV_SERVER_PROTO", getServerProto()
+        buildConfigField "String", "DEV_SERVER_HOST", getServerHost()
+        buildConfigField("int", "DEV_SERVER_PORT", getServerPort())
     }
     buildTypes {
+        buildTypes.each {
+            it.buildConfigField 'String', 'PROD_SERVER_PROTO', prodServerProto
+            it.buildConfigField 'String', 'PROD_SERVER_HOST', prodServerHost
+            it.buildConfigField 'int', 'PROD_SERVER_PORT', prodServerPort
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

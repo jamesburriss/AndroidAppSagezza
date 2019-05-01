@@ -1,8 +1,10 @@
 package uk.ac.ncl.team15.android;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +12,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -67,12 +66,14 @@ public class UserProfileActivity extends AppCompatActivity {
             .map("W", "Widowed")
             .map("D", "Separated");
 
-    private static final int READ_REQUEST_CODE = 42;
+    private static final int READ_REQUEST_CODE_UFILE = 42;
+    private static final int READ_REQUEST_CODE_IFILE = 22;
 
     private SaggezzaApplication app;
     private SaggezzaService retrofitService;
 
     private List<Object> listData;
+    private List<ModelFile> files;
     private ModelUser modelUser = null;
 
     @Override
@@ -87,13 +88,20 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void reload() {
+        // reset lists
+        this.listData = null;
+        this.files = null;
+
         final ListView userAttribList = findViewById(R.id.userAttributesList);
         final TextView userRealName = findViewById(R.id.userRealName);
         final ImageView userImg = findViewById(R.id.userImg);
+        final ImageView btnAdd = findViewById(R.id.btnAdd);
+        final BottomNavigationView bottomNavView = findViewById(R.id.userTab);
 
         final int userId = getIntent().getIntExtra("_userId", -1);
         assert(userId != -1);
 
+        btnAdd.setVisibility(View.INVISIBLE);
         userImg.setImageResource(R.drawable.user);
 
         // lambda consumer is called after the service request is complete
@@ -102,15 +110,83 @@ public class UserProfileActivity extends AppCompatActivity {
 
             new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(userData));
             userRealName.setText(userData.getFullNameWithTitle());
-
             listData = new ArrayList<>();
-            listData.addAll(buildAttribs(userData));
-            if (userData.getNextOfKins() != null)
-                listData.addAll(userData.getNextOfKins());
-            if (userData.getVisibility() >= Constants.VISIBILITY_ADMIN)
-                listData.add(new DummyAttribute("Files", "Click to view", "files"));
+            listData.addAll(buildAttribs(this.modelUser));
             ListAdapter adapter = new UserProfileAdapter(UserProfileActivity.this, listData);
             userAttribList.setAdapter(adapter);
+        });
+
+        userImg.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/*");
+            startActivityForResult(intent, READ_REQUEST_CODE_IFILE); // ImageFILE
+        });
+
+        btnAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, READ_REQUEST_CODE_UFILE); // UserFILE
+        });
+
+        bottomNavView.setOnNavigationItemSelectedListener(menuItem -> {
+            if (this.modelUser == null)
+                return false;
+            btnAdd.setVisibility(View.INVISIBLE);
+            ListAdapter adapter = null;
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_info:
+                    listData = new ArrayList<>();
+                    listData.addAll(buildAttribs(this.modelUser));
+                    adapter = new UserProfileAdapter(UserProfileActivity.this, listData);
+                    break;
+                case R.id.navigation_kin:
+                    listData = new ArrayList<>();
+                    if (this.modelUser.getNextOfKins() != null)
+                        listData.addAll(this.modelUser.getNextOfKins());
+                    adapter = new UserProfileAdapter(UserProfileActivity.this, listData);
+                    break;
+                case R.id.navigation_files:
+                    listData = new ArrayList<>();
+                    if (files != null) {
+                        listData.addAll(files);
+                        userAttribList.setAdapter(new FileListAdapter(
+                                UserProfileActivity.this, files));
+                        btnAdd.setVisibility(View.VISIBLE);
+                    }
+                    Call<ModelFiles> callFiles =
+                            retrofitService.files(this.modelUser.getId());
+                    callFiles.enqueue(new Callback<ModelFiles>() {
+                        @Override
+                        public void onResponse(Call<ModelFiles> call, Response<ModelFiles> response) {
+                            if (response.code() == 200) {
+                                files = response.body().getFiles();
+                                listData = new ArrayList<>();
+                                listData.addAll(files);
+                                userAttribList.setAdapter(new FileListAdapter(
+                                        UserProfileActivity.this, files));
+                                btnAdd.setVisibility(View.VISIBLE);
+                            }
+                            else
+                                Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<ModelFiles> call, Throwable throwable) {
+                            Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
+                            if (throwable != null)
+                                Log.e("UserProfileActivity_RETROFIT", "files(" +
+                                        UserProfileActivity.this.modelUser.getId() + ")", throwable);
+                        }
+                    });
+                    break;
+                default:
+                    return false;
+            }
+            if (adapter != null)
+                userAttribList.setAdapter(adapter);
+            return true;
         });
 
         userAttribList.setOnItemClickListener((adapter, v, position, id) -> {
@@ -121,8 +197,8 @@ public class UserProfileActivity extends AppCompatActivity {
                     onAtrributeClick((UserAttribute) listObject);
                 else if (listObject instanceof ModelNextOfKin)
                     onNOKClick((ModelNextOfKin) listObject);
-                else if (listObject instanceof DummyAttribute)
-                    onDummyAttributeClick((DummyAttribute) listObject);
+                else if (listObject instanceof ModelFile)
+                    onFileClick((ModelFile) listObject);
             }
         });
     }
@@ -241,42 +317,37 @@ public class UserProfileActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void onDummyAttributeClick(DummyAttribute attrib) {
-        if ("files".equals(attrib.getTag())) {
-            Call<ModelFiles> callFiles =
-                    retrofitService.files(this.modelUser.getId());
-            callFiles.enqueue(new Callback<ModelFiles>() {
-                @Override
-                public void onResponse(Call<ModelFiles> call, Response<ModelFiles> response) {
-                    if (response.code() == 200)
-                        displayFiles(response.body().getFiles());
-                    else
-                        Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
-                }
+    private void onFileClick(ModelFile modelFile) {
+        DownloadManager.Request request =
+                new DownloadManager.Request(Uri.parse(SaggezzaApplication.userFileUrl(modelUser, modelFile)))
+                .setTitle(modelFile.getFilename())
+                .setDescription("Downloading")
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                //.setDestinationUri()
+                .setRequiresCharging(false)
+                .setAllowedOverMetered(true)
+                .setAllowedOverRoaming(true)
+                .addRequestHeader("Authorization", "Token " + app.getUserAuthToken());
 
-                @Override
-                public void onFailure(Call<ModelFiles> call, Throwable throwable) {
-                    Toast.makeText(UserProfileActivity.this, "Error loading files", Toast.LENGTH_LONG).show();
-                    if (throwable != null)
-                        Log.e("UserProfileActivity_RETROFIT", "files(" +
-                                UserProfileActivity.this.modelUser.getId() + ")", throwable);
-                }
-            });
-        }
+        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
+
+        Toast.makeText(this, "Downloading...", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode,
                                  Intent resultData) {
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if ((requestCode == READ_REQUEST_CODE_UFILE || requestCode == READ_REQUEST_CODE_IFILE) && resultCode == Activity.RESULT_OK) {
             Uri uri = null;
             if (resultData != null) {
                 uri = resultData.getData();
 
                 byte[] fileContents = null;
-                try {
-                    InputStream in = getContentResolver().openInputStream(uri);
+                try (InputStream in = getContentResolver().openInputStream(uri)) {
+                    DataInputStream din = new DataInputStream(in);
                     fileContents = new byte[in.available()];
+                    din.readFully(fileContents);
                 } catch (IOException ioe) {
                     Log.e("UserProfileActivity_IO", "error reading file from storage", ioe);
                     Toast.makeText(UserProfileActivity.this, "Error reading file", Toast.LENGTH_LONG).show();
@@ -285,43 +356,40 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 RequestBody requestFile =
                         RequestBody.create(
-                                MediaType.parse(getContentResolver().getType(uri)),
+                                MediaType.parse("multipart/form-data"),
                                 fileContents
                         );
 
                 MultipartBody.Part body =
                         MultipartBody.Part.createFormData("file", "file", requestFile);
 
-                Call<ResponseBody> callUf =
-                        retrofitService.uploadUserFile(this.modelUser.getId(),
-                                Util.getFileName(uri, getContentResolver()), body);
+                Call<ResponseBody> callUf = null;
+                if (requestCode == READ_REQUEST_CODE_UFILE) {
+                    callUf = retrofitService.uploadUserFile(this.modelUser.getId(),
+                            Util.getFileName(uri, getContentResolver()), body);
+                } else if (requestCode == READ_REQUEST_CODE_IFILE) {
+                    callUf = retrofitService.uploadStaticFile(this.modelUser.getId(),
+                            "img", body);
+                }
                 callUf.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        Log.i("callUf", "onResponse(" + response.code() + ")");
+                        if (response.code() == 200) {
+                            reload();
+                            Toast.makeText(UserProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                            Log.w("callUf", "onResponse(" + response.code() + ")");
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.i("callUf", "onFailure(...)", t);
+                        Log.e("callUf", "onFailure(...)", t);
                     }
                 });
 
             }
         }
-    }
-
-    private void displayFiles(List<ModelFile> files) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
-        builder.setTitle("Files");
-
-        LayoutInflater inflater = this.getLayoutInflater();
-        ListView listView = new ListView(this);
-        listView.setAdapter(new FileListAdapter(this, files));
-        builder.setView(listView);
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     private static List<UserAttribute> buildAttribs(ModelUser modelUser) {

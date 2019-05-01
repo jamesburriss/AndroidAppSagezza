@@ -77,16 +77,15 @@
             android:scrollbars="vertical|none"/>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btnAdd"
             android:layout_width="65dp"
             android:layout_height="57dp"
             android:layout_alignTop="@+id/userAttributesList"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="311dp"
 
-            android:layout_marginEnd="22dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="5dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="0dp"
             app:srcCompat="@drawable/plus_button" />
 </RelativeLayout>
 

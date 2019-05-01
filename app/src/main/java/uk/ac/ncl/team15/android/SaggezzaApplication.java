@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uk.ac.ncl.team15.android.retrofit.SaggezzaService;
+import uk.ac.ncl.team15.android.retrofit.models.ModelFile;
 import uk.ac.ncl.team15.android.retrofit.models.ModelJob;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 import uk.ac.ncl.team15.android.util.ValueContainer;
@@ -36,9 +37,9 @@ public class SaggezzaApplication extends Application
     private SaggezzaService retrofitService;
 
     private static final String BASE_URL = String.format("%s://%s:%d/",
-                                                BuildConfig.SERVER_PROTO,
-                                                BuildConfig.SERVER_HOST,
-                                                BuildConfig.SERVER_PORT);
+                                                BuildConfig.PROD_SERVER_PROTO,
+                                                BuildConfig.PROD_SERVER_HOST,
+                                                BuildConfig.PROD_SERVER_PORT);
 
     @Override
     public void onCreate() {
@@ -208,5 +209,9 @@ public class SaggezzaApplication extends Application
 
     public static String userImageUrl(ModelUser modelUser) {
         return BASE_URL + String.format("users/%d/img", modelUser.getId());
+    }
+
+    public static String userFileUrl(ModelUser modelUser, ModelFile modelFile) {
+        return BASE_URL + String.format("users/%d/files/%s", modelUser.getId(), modelFile.getFilename());
     }
 }

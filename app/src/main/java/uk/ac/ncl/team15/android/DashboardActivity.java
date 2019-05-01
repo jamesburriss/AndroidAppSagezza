@@ -23,9 +23,6 @@ import uk.ac.ncl.team15.android.util.DownloadImageTask;
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
 
 public class DashboardActivity extends AppCompatActivity {
-
-    private ModelUser modelUser = null;
-    //Do we still want this?
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -59,18 +56,17 @@ public class DashboardActivity extends AppCompatActivity {
 
         ImageView userImg = findViewById(R.id.userImg);
         userImg.setImageResource(R.drawable.user);
-        new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(SaggezzaApplication.getInstance().getUserAuthData()));
+        if (!SaggezzaApplication.getInstance().loggedInAsGuest())
+            new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(SaggezzaApplication.getInstance().getUserAuthData()));
 
-         Button tutorialBtn = (Button) findViewById(R.id.btn_tutorial);
-         tutorialBtn.setOnClickListener((view) -> {
-         Intent intent = new Intent(DashboardActivity.this, TutorialActivity.class);
-         startActivity(intent);
-         });
+        Button tutorialBtn = (Button) findViewById(R.id.btn_tutorial);
+        tutorialBtn.setOnClickListener((view) -> {
+            Intent intent = new Intent(DashboardActivity.this, TutorialActivity.class);
+            startActivity(intent);
+        });
 
         Button teamBtn = (Button) findViewById(R.id.btn_team);
         teamBtn.setOnClickListener((view) -> {
-            Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
-            startActivity(intent);
         });
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
@@ -98,36 +94,32 @@ public class DashboardActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
+        bottomNavigationView.setOnNavigationItemSelectedListener(mi -> {
+            switch (mi.getItemId()) {
 
-                    case R.id.navigation_jobs:
-                        Intent intent1 = new Intent(DashboardActivity.this, JobSearchActivity.class);
-                        startActivity(intent1);
-                        break;
+                case R.id.navigation_jobs:
+                    Intent intent1 = new Intent(DashboardActivity.this, JobSearchActivity.class);
+                    startActivity(intent1);
+                    break;
 
-                    case  R.id.navigation_employees:
-                        Intent intent2 = new Intent(DashboardActivity.this, UserSearchActivity.class);
-                        startActivity(intent2);
-                        break;
+                case  R.id.navigation_employees:
+                    Intent intent2 = new Intent(DashboardActivity.this, UserSearchActivity.class);
+                    startActivity(intent2);
+                    break;
 
-                    case  R.id.navigation_team:
-                        Intent intent3 = new Intent(DashboardActivity.this, UserSearchActivity.class);
-                        intent3.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
-                        startActivity(intent3);
-                        break;
+                case  R.id.navigation_team:
+                    break;
 
-                    case  R.id.navigation_myprofile:
+                case  R.id.navigation_myprofile:
+                    if (!SaggezzaApplication.getInstance().loggedInAsGuest()) {
                         Intent intent4 = new Intent(DashboardActivity.this, UserProfileActivity.class);
                         intent4.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
                         startActivity(intent4);
-                        break;
-                }
-                return false;
-
+                    }
+                    break;
             }
+            return false;
+
         });
     }
 

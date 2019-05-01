@@ -39,8 +39,19 @@ public interface SaggezzaService
     @GET("users/")
     Call<ModelUsers> users(@Query("search") String search, @Query("department") String department, @Query("page") int page);
 
+    /*
+     * files
+     */
     @GET("users/{id}/files")
     Call<ModelFiles> files(@Path("id") int id);
+
+    @Multipart
+    @POST("users/{id}/{filename}")
+    Call<ResponseBody> uploadStaticFile(
+            @Path("id") int id,
+            @Path("filename") String filename,
+            @Part MultipartBody.Part file);
+
 
     @Multipart
     @POST("users/{id}/files/{filename}")
