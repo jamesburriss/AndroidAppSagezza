@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android;
  * @Purpose: The Tutorial activity is made to help new users on
  *  familiarizing with the app.
  *
- * @authors  Callum Errington
+ * @authors  Callum Errington, Natalie Neo, Oliver McGregor, Husain Chopdawala
  * @since   1/5/2018
  * extended by @authors
  *

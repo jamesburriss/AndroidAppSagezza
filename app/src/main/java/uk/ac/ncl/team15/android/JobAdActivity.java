@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android;
  * @Purpose: The Job Ad activity contains info on
  * a specific job hosted by Saggezza.
  *
- * @authors  Callum Errington
+ * @authors  Callum Errington, Husain Chopdawala,  Natalie Neo
  * @since   1/5/2018
  * extended by @authors
  *

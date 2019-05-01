@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android;
  * @Purpose: The Forgot Password activity lets customers to retrieve
  * their password by requesting it with their emails
  *
- * @authors  Callum Errington
+ * @authors  Callum Errington, Io Man Kuan, Husain Chopdawala, Natalie Neo
  * @since   1/5/2018
  * extended by @authors
  *

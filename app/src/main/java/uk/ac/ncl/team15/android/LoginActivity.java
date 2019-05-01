@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android;
  * @Purpose: The Login activity lets the user validate their authenticity
  *  and login.
  *
- * @authors  Callum Errington
+ * @authors  Callum Errington, James Burriss
  * @since   1/5/2018
  * extended by @authors
  *

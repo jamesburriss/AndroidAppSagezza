@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android;
  * @Purpose: The Dashboard activity contains most of the main controls the user
  * uses to navigate around the app
  *
- * @authors  Callum Errington
+ * @authors  Callum Errington, Deyan Jimenez, James Burriss, Io Man Kuan, Husain Chopdawala, Natalie Neo
  * @since   1/5/2018
  * extended by @authors
  *
