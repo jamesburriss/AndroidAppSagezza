@@ -1,5 +1,7 @@
 package uk.ac.ncl.team15.android.retrofit;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -31,14 +33,21 @@ public interface SaggezzaService
     @GET("users/{id}")
     Call<ModelUser> users(@Path("id") int id);
 
-    @GET("users/")
-    Call<ModelUsers> users(@Query("search") String search, @Query("department") String department, @Query("page") int page);
-
     @PATCH("users/{id}")
     Call<ResponseBody> patchUser(@Path("id") int id, @Body ModelUser modelUser);
 
+    @GET("users/")
+    Call<ModelUsers> users(@Query("search") String search, @Query("department") String department, @Query("page") int page);
+
     @GET("users/{id}/files")
     Call<ModelFiles> files(@Path("id") int id);
+
+    @Multipart
+    @POST("users/{id}/files/{filename}")
+    Call<ResponseBody> uploadUserFile(
+            @Path("id") int id,
+            @Path("filename") String filename,
+            @Part MultipartBody.Part file);
 
     /*
      * /nextOfKin

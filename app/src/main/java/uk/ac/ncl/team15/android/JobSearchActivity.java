@@ -48,6 +48,10 @@ public class JobSearchActivity extends AppCompatActivity {
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            {
+                onQuery("");
+            }
+
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return onQuery(query);
@@ -83,9 +87,6 @@ public class JobSearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        searchView.setIconified(false);
-        searchView.requestFocusFromTouch();
 
         return super.onCreateOptionsMenu(menu);
     }

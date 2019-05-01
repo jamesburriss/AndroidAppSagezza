@@ -119,22 +119,14 @@ public class DashboardActivity extends AppCompatActivity {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
                         builder.setMessage("Are you sure you want to logout?");
                         builder.setCancelable(true);
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SaggezzaApplication.getInstance().setUserAuthData(null);
-                                SaggezzaApplication.getInstance().setUserAuthToken(null);
-                                finish();
-                                Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
-                                intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent4);
-                            }
+                        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+                        builder.setPositiveButton("Yes", (dialog, which) -> {
+                            SaggezzaApplication.getInstance().setUserAuthData(null);
+                            SaggezzaApplication.getInstance().setUserAuthToken(null);
+                            finish();
+                            Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
+                            intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent4);
                         });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
