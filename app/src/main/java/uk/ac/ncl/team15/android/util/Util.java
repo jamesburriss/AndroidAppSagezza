@@ -14,7 +14,7 @@ import java.util.TimeZone;
 /**
  * @Purpose: Misc utility class
  *
- * @authors  Callum
+ * @authors  Callum Errington
  * @since   1/5/2018
  * extended by @authors
  *

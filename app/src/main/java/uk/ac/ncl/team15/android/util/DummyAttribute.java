@@ -3,7 +3,7 @@ package uk.ac.ncl.team15.android.util;
 /**
  * @Purpose: A class representing a dummy user attribute to allow the UI to be manipulated
  *
- * @authors  Callum
+ * @authors  Callum Errington
  * @since   1/5/2018
  * extended by @authors
  *

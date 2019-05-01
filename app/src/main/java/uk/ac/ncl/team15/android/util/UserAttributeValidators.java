@@ -4,7 +4,7 @@ package uk.ac.ncl.team15.android.util;
 /**
  * @Purpose: Validates strings regarding to correct formats.
  *
- * @authors  Callum
+ * @authors  Callum Errington
  * @since   1/5/2018
  * extended by @authors
  *

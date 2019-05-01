@@ -3,7 +3,7 @@ package uk.ac.ncl.team15.android.util;
 /**
  * @Purpose: Misc utility class
  *
- * @authors  Callum
+ * @authors  Callum Errington
  * @since   1/5/2018
  * extended by @authors
  *

@@ -3,7 +3,7 @@ package uk.ac.ncl.team15.android.retrofit.models;
 /**
  * @Purpose: A JSON API response on jobs
  *
- * @authors  Callum
+ * @authors  Callum Errington
  * @since   1/5/2018
  * extended by @authors
  *
