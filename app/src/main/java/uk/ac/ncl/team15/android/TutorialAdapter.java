@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The adapter helper class of Tutorial Activity.
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;

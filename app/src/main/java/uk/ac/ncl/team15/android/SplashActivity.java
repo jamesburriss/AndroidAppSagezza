@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The Splash activity is made to show the Saggezza logo at
+ *  the start of the app
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;

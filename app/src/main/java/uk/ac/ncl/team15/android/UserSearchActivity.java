@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The user Search activity lets the user to read and find
+ *  other employee's information within permission.
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

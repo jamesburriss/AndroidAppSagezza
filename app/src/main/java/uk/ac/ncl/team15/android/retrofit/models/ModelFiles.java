@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android.retrofit.models;
 
+/**
+ * @Purpose: A JSON API response on files
+ *
+ * @authors  Callum
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

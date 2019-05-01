@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The user validator  Activity validates the authenticity of an user.
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Consumer;

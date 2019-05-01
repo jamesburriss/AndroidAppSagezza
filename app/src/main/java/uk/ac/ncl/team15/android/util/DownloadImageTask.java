@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android.util;
 
+/**
+ * @Purpose: Misc utility class
+ *
+ * @authors  Callum
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
