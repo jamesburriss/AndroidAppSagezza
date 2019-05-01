@@ -1,9 +1,12 @@
 package uk.ac.ncl.team15.android;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,6 +44,19 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             LoginActivity.this.finish();
         });
+    }
+
+    public void forgotPass(View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Forgotten your password?");
+            alert.setMessage("Please contact an administrator");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alert.create().show();
     }
 
     private void validate(String userName, String userPassword) {

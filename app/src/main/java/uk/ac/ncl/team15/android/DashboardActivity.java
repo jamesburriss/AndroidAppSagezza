@@ -3,6 +3,7 @@ package uk.ac.ncl.team15.android;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +19,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import uk.ac.ncl.team15.android.util.DownloadImageTask;
+import uk.ac.ncl.team15.android.retrofit.models.ModelUser;
+
 public class DashboardActivity extends AppCompatActivity {
 
+    private ModelUser modelUser = null;
     //Do we still want this?
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,25 +54,24 @@ public class DashboardActivity extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.dashboardWelcomeText);
         welcomeText.setText(String.format(getString(R.string.dashboard_welcome), SaggezzaApplication.getInstance().getUserAuthData().getFirstName()));
 
-        // Guest account has null as the position
         TextView jobPosText = findViewById(R.id.dashboardPosition);
         jobPosText.setText(String.format(getString(R.string.dashboard_position), SaggezzaApplication.getInstance().getUserAuthData().getPosition()));
 
-        // Need to pull user image
         ImageView userImg = findViewById(R.id.userImg);
         userImg.setImageResource(R.drawable.user);
-
-         Button teamBtn = (Button) findViewById(R.id.btn_team);
-         teamBtn.setOnClickListener((view) -> {
-         Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class); //replace to team activity
-         startActivity(intent);
-         });
+        new DownloadImageTask(userImg).execute(SaggezzaApplication.userImageUrl(SaggezzaApplication.getInstance().getUserAuthData()));
 
          Button tutorialBtn = (Button) findViewById(R.id.btn_tutorial);
          tutorialBtn.setOnClickListener((view) -> {
          Intent intent = new Intent(DashboardActivity.this, TutorialActivity.class);
          startActivity(intent);
          });
+
+        Button teamBtn = (Button) findViewById(R.id.btn_team);
+        teamBtn.setOnClickListener((view) -> {
+            Intent intent = new Intent(DashboardActivity.this, UserSearchActivity.class);
+            startActivity(intent);
+        });
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firststart", true);
@@ -109,27 +113,16 @@ public class DashboardActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
 
-                    case  R.id.navigation_myprofile:
-                        Intent intent3 = new Intent(DashboardActivity.this, UserProfileActivity.class);
+                    case  R.id.navigation_team:
+                        Intent intent3 = new Intent(DashboardActivity.this, UserSearchActivity.class);
                         intent3.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
                         startActivity(intent3);
                         break;
 
-                    case  R.id.navigation_logout:
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
-                        builder.setMessage("Are you sure you want to logout?");
-                        builder.setCancelable(true);
-                        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
-                        builder.setPositiveButton("Yes", (dialog, which) -> {
-                            SaggezzaApplication.getInstance().setUserAuthData(null);
-                            SaggezzaApplication.getInstance().setUserAuthToken(null);
-                            finish();
-                            Intent intent4= new Intent(DashboardActivity.this, LoginActivity.class);
-                            intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent4);
-                        });
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
+                    case  R.id.navigation_myprofile:
+                        Intent intent4 = new Intent(DashboardActivity.this, UserProfileActivity.class);
+                        intent4.putExtra("_userId", SaggezzaApplication.getInstance().getUserAuthData().getId());
+                        startActivity(intent4);
                         break;
                 }
                 return false;
@@ -142,13 +135,30 @@ public class DashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                SaggezzaApplication.getInstance().setUserAuthData(null);
-                SaggezzaApplication.getInstance().setUserAuthToken(null);
-                finish();
-                Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+                builder.setMessage("Are you sure you want to logout?");
+                builder.setCancelable(true);
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SaggezzaApplication.getInstance().setUserAuthData(null);
+                        SaggezzaApplication.getInstance().setUserAuthToken(null);
+                        finish();
+                        Intent intent= new Intent(DashboardActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 return true;
+
             case R.id.help_menu:
                 finish();
                 Intent intent1 = new Intent(DashboardActivity.this, TutorialActivity.class);
