@@ -160,14 +160,7 @@ public class DashboardActivity extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 return true;
-
-            case R.id.help_menu:
-                finish();
-                Intent intent1 = new Intent(DashboardActivity.this, TutorialActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent1);
-                return true;
-
+                
                 default:
                     return super.onOptionsItemSelected(item);
         }
