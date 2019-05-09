@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The user profile Activity retrieves and shows
+ * users information on where requested.
+ *
+ * @authors  Callum Errington, Natalie Neo, Io Man Kuan, James Burriss
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Intent;

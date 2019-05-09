@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: Saggezza Application contains all the helper methods
+ * and authentications
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;

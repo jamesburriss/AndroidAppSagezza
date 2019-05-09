@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android.retrofit.models;
 
+/**
+ * @Purpose: A JSON API response on a specific user
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.os.Parcel;
 import android.os.Parcelable;
 

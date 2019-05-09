@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android.util;
 
+
+/**
+ * @Purpose: Validates strings regarding to correct formats.
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
 import android.telephony.PhoneNumberUtils;
 
 import uk.ac.ncl.team15.android.retrofit.models.ModelUser;

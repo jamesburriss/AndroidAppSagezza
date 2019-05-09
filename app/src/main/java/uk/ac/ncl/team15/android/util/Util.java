@@ -12,8 +12,13 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Misc utility class
- */
+ * @Purpose: Misc utility class
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
 public class Util {
     public static String convertISO8601To(String iso8601, String timezone, String fmt) throws ParseException {
         DateFormat dfFrom = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");

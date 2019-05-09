@@ -1,8 +1,14 @@
 package uk.ac.ncl.team15.android.util;
 
 /**
- * A class representing a dummy user attribute to allow the UI to be manipulated
- */
+ * @Purpose: A class representing a dummy user attribute to allow the UI to be manipulated
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 public class DummyAttribute {
     private String key, value;
     private Object tag;

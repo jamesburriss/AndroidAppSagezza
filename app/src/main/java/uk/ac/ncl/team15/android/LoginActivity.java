@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The Login activity lets the user validate their authenticity
+ *  and login.
+ *
+ * @authors  Callum Errington, James Burriss
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;

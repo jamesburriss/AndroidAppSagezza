@@ -1,5 +1,14 @@
 package uk.ac.ncl.team15.android.retrofit.models;
 
+/**
+ * @Purpose: A JSON API response on a next of kin
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

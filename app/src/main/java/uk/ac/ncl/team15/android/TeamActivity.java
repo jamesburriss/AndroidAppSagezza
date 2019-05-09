@@ -1,4 +1,14 @@
-package uk.ac.ncl.team15.android.util;
+package uk.ac.ncl.team15.android;
+
+/**
+ * @Purpose: The Team activity is made to show the users
+ *  team.
+ *
+ * @authors  Callum Errington
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

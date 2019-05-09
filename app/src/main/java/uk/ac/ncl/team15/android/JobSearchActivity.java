@@ -1,5 +1,15 @@
 package uk.ac.ncl.team15.android;
 
+/**
+ * @Purpose: The Job Search activity lets the user to find
+ *  jobs hosted by Saggezza.
+ *
+ * @authors  Callum Errington, Husain Chopdawala, Natalie Neo
+ * @since   1/5/2018
+ * extended by @authors
+ *
+ **/
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
