@@ -229,6 +229,7 @@
                     android:layout_marginTop="50dp"
                     android:background="@android:color/holo_blue_dark"
                     android:textColor="@color/white"
+                    android:visibility="invisible"
                     android:text="Apply" />
             </RelativeLayout>
         </RelativeLayout>
